@@ -13,7 +13,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.abubakarmana01.ccl-conference"
     },
     "android": {
       "adaptiveIcon": {

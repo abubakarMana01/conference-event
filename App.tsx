@@ -1,20 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import Toast from 'react-native-toast-message';
+import RootNav from './src/navs/RootNav';
+import { LogBox, View } from 'react-native';
+import { AuthProvider } from '@/contexts/AuthContext';
+import { useEffect } from 'react';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+	useEffect(() => {
+		LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+	}, []);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+	return (
+		<AuthProvider>
+			<View style={{ flex: 1 }}>
+				<RootNav />
+				<Toast />
+			</View>
+		</AuthProvider>
+	);
+}
