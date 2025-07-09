@@ -10,7 +10,7 @@ const RootNav = () => {
 
 	return (
 		<NavigationContainer theme={navigationTheme}>
-			{true ? <AppStack /> : <AuthStack />}
+			{isAuthenticated ? <AppStack /> : <AuthStack />}
 		</NavigationContainer>
 	);
 };

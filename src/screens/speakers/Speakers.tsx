@@ -40,33 +40,32 @@ const Speakers = () => {
 				Learn from industry leaders and innovators
 			</AppText>
 
-			{filteredSpeakers.length > 0 ? (
-				<FlatList
-					contentContainerStyle={styles.flatlist}
-					numColumns={2}
-					data={filteredSpeakers}
-					columnWrapperStyle={styles.columnWrapperStyle}
-					renderItem={({ item }) => <Speaker speaker={item} />}
-					keyExtractor={(item) => item.id}
-					ListFooterComponent={<View style={styles.footer} />}
-					ListHeaderComponent={
-						<SearchBar
-							searchQuery={searchQuery}
-							setSearchQuery={setSearchQuery}
-							placeholder="Search speakers, organizations, topics..."
-						/>
-					}
-					ListHeaderComponentStyle={{marginBottom: 16}}
-				/>
-			) : (
-				<View style={styles.emptyState}>
-					<Ionicons name="people" size={48} color={COLORS.greyLight} />
-					<AppText style={styles.emptyText}>No speakers found</AppText>
-					<AppText style={styles.emptySubtext}>
-						Try adjusting your search or filter
-					</AppText>
-				</View>
-			)}
+			<FlatList
+				contentContainerStyle={styles.flatlist}
+				numColumns={2}
+				data={filteredSpeakers}
+				columnWrapperStyle={styles.columnWrapperStyle}
+				renderItem={({ item }) => <Speaker speaker={item} />}
+				keyExtractor={(item) => item.id}
+				ListFooterComponent={<View style={styles.footer} />}
+				ListHeaderComponent={
+					<SearchBar
+						searchQuery={searchQuery}
+						setSearchQuery={setSearchQuery}
+						placeholder="Search speakers, organizations, topics..."
+					/>
+				}
+				ListHeaderComponentStyle={{ marginBottom: 16 }}
+				ListEmptyComponent={
+					<View style={styles.emptyState}>
+						<Ionicons name="people" size={48} color={COLORS.greyLight} />
+						<AppText style={styles.emptyText}>No speakers found</AppText>
+						<AppText style={styles.emptySubtext}>
+							Try adjusting your search or filter
+						</AppText>
+					</View>
+				}
+			/>
 		</Screen>
 	);
 };
