@@ -2,38 +2,76 @@ import {
 	StyleSheet,
 	View,
 	ScrollView,
-	Image,
 	TouchableOpacity,
-	Linking,
-	Dimensions,
 	Platform,
-	TextInput,
+	ActivityIndicator,
+	RefreshControl,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { AppText, SearchBar } from '@/components';
 import { COLORS } from '@/constants/colors';
 import { Ionicons } from '@expo/vector-icons';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { fetchSponsors } from '@/services/sponsors.service';
+import Sponsor from './components/Sponsor';
+import { ISponsor } from '@/types';
 
 const SponsorsScreen = () => {
 	const [searchQuery, setSearchQuery] = useState('');
 
-	const handleSponsorPress = (url: string) => {
-		Linking.openURL(url).catch((err) =>
-			console.error('Failed to open URL:', err)
-		);
-	};
+	const {
+		data,
+		fetchNextPage,
+		hasNextPage,
+		isFetchingNextPage,
+		isLoading,
+		refetch,
+	} = useInfiniteQuery({
+		queryKey: ['sponsors'],
+		queryFn: fetchSponsors,
+		getNextPageParam: (lastPage) => {
+			const { page, pageCount } = lastPage.meta.pagination;
+			return page < pageCount ? page + 1 : undefined;
+		},
+		initialPageParam: 1,
+	});
 
-	// Filter sponsors based on search query
-	const filteredSponsorTiers = sponsorTiers
-		.map((tier) => ({
-			...tier,
-			sponsors: tier.sponsors.filter(
-				(sponsor) =>
-					sponsor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-					sponsor.description.toLowerCase().includes(searchQuery.toLowerCase())
+	const sponsors = useMemo(() => {
+		return data?.pages.flatMap((page) => page.data) || [];
+	}, [data]);
+
+	// Group sponsors by category
+	const groupedSponsors = useMemo(() => {
+		const groups: Record<string, any[]> = {};
+		for (const sponsor of sponsors) {
+			const category = sponsor.category.toLowerCase(); // e.g. 'platinum'
+			if (!groups[category]) groups[category] = [];
+			groups[category].push(sponsor);
+		}
+		return groups;
+	}, [sponsors]);
+
+	const filteredSponsorTiers = Object.entries(groupedSponsors)
+		.map(([level, sponsors]) => ({
+			title: `${level[0].toUpperCase()}${level.slice(1)} Sponsors`,
+			level,
+			sponsors: sponsors.filter(
+				(s) =>
+					s.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+					s.description.toLowerCase().includes(searchQuery.toLowerCase())
 			),
 		}))
-		.filter((tier) => tier.sponsors.length > 0); // Remove empty tiers
+		.filter((tier) => tier.sponsors.length > 0);
+
+	if (isLoading) {
+		return (
+			<ActivityIndicator
+				size="large"
+				color={COLORS.primary}
+				style={{ marginTop: 40 }}
+			/>
+		);
+	}
 
 	return (
 		<View style={styles.container}>
@@ -41,7 +79,27 @@ const SponsorsScreen = () => {
 				These organizations help make our event possible
 			</AppText>
 
-			<ScrollView contentContainerStyle={styles.scrollViewContainer}>
+			<ScrollView
+				contentContainerStyle={styles.scrollViewContainer}
+				refreshControl={
+					<RefreshControl
+						refreshing={isLoading}
+						onRefresh={refetch}
+						colors={[COLORS.primary]}
+						tintColor={COLORS.primary}
+					/>
+				}
+				onScroll={({ nativeEvent }) => {
+					const { layoutMeasurement, contentOffset, contentSize } = nativeEvent;
+					if (
+						layoutMeasurement.height + contentOffset.y >=
+						contentSize.height - 100
+					) {
+						hasNextPage && fetchNextPage();
+					}
+				}}
+				scrollEventThrottle={400}
+			>
 				<View style={styles.searchContainer}>
 					<SearchBar
 						{...{
@@ -51,42 +109,17 @@ const SponsorsScreen = () => {
 						}}
 					/>
 				</View>
-				
+
 				{filteredSponsorTiers.length > 0 ? (
-					filteredSponsorTiers.map((tier, index) => (
-						<View key={index} style={styles.tierContainer}>
+					filteredSponsorTiers.map((tier) => (
+						<View key={tier.title} style={styles.tierContainer}>
 							<View style={[styles.tierHeader, styles[`${tier.level}Header`]]}>
 								<AppText style={styles.tierTitle}>{tier.title}</AppText>
 							</View>
 
 							<View style={styles.sponsorsContainer}>
-								{tier.sponsors.map((sponsor, sponsorIndex) => (
-									<TouchableOpacity
-										key={sponsorIndex}
-										style={styles.sponsorCard}
-										onPress={() => handleSponsorPress(sponsor.url)}
-										activeOpacity={0.8}
-									>
-										<View style={styles.sponsorImageContainer}>
-											<Image
-												source={sponsor.logo}
-												style={styles.sponsorImage}
-												resizeMode="contain"
-											/>
-										</View>
-										<AppText style={styles.sponsorName}>{sponsor.name}</AppText>
-										<AppText style={styles.sponsorDescription}>
-											{sponsor.description}
-										</AppText>
-										<View style={styles.linkContainer}>
-											<AppText style={styles.linkText}>Visit Website</AppText>
-											<Ionicons
-												name="open-outline"
-												size={16}
-												color={COLORS.primary}
-											/>
-										</View>
-									</TouchableOpacity>
+								{tier.sponsors.map((sponsor: ISponsor) => (
+									<Sponsor sponsor={sponsor} key={sponsor.id} />
 								))}
 							</View>
 						</View>
@@ -109,13 +142,20 @@ const SponsorsScreen = () => {
 						<AppText style={styles.contactButtonText}>Contact Us</AppText>
 					</TouchableOpacity>
 				</View>
+
+				{isFetchingNextPage && (
+					<ActivityIndicator
+						size="large"
+						color={COLORS.primary}
+						style={{ marginVertical: 20 }}
+					/>
+				)}
 			</ScrollView>
 		</View>
 	);
 };
 
-const { width } = Dimensions.get('window');
-const sponsorCardWidth = width / 2 - 24;
+export default SponsorsScreen;
 
 const styles = StyleSheet.create({
 	container: {
@@ -167,53 +207,6 @@ const styles = StyleSheet.create({
 		flexWrap: 'wrap',
 		justifyContent: 'space-between',
 		paddingHorizontal: 16,
-	},
-	sponsorCard: {
-		width: sponsorCardWidth,
-		backgroundColor: COLORS.white,
-		borderRadius: 12,
-		padding: 16,
-		marginBottom: 16,
-		alignItems: 'center',
-		shadowColor: COLORS.black,
-		shadowOffset: { width: 0, height: 2 },
-		shadowOpacity: 0.1,
-		shadowRadius: 4,
-		elevation: 2,
-	},
-	sponsorImageContainer: {
-		width: sponsorCardWidth - 32,
-		height: 100,
-		justifyContent: 'center',
-		alignItems: 'center',
-		marginBottom: 12,
-	},
-	sponsorImage: {
-		width: '100%',
-		height: '100%',
-	},
-	sponsorName: {
-		fontSize: 16,
-		fontWeight: '600',
-		color: COLORS.dark,
-		marginBottom: 4,
-		textAlign: 'center',
-	},
-	sponsorDescription: {
-		fontSize: 13,
-		color: COLORS.grey,
-		textAlign: 'center',
-		marginBottom: 8,
-	},
-	linkContainer: {
-		flexDirection: 'row',
-		alignItems: 'center',
-		marginTop: 'auto',
-	},
-	linkText: {
-		fontSize: 14,
-		color: COLORS.primary,
-		marginRight: 4,
 	},
 	becomeSponsorContainer: {
 		backgroundColor: COLORS.white,
@@ -323,4 +316,4 @@ const sponsorTiers = [
 	},
 ];
 
-export default SponsorsScreen;
+// export default SponsorsScreen;

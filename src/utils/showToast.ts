@@ -1,8 +1,13 @@
-import Toast from 'react-native-toast-message';
+import Toast from 'react-native-simple-toast';
 
-export const showToast = (message: string, toastType?: 'success' | 'error') =>
-  Toast.show({
-    type: toastType || 'success',
-    text1: message,
-    topOffset: 80,
-  });
+export const showToast = (message: string) => Toast.show(message, Toast.SHORT);
+
+export const showToastWithGravity = ({
+	message,
+	duration,
+	gravity,
+}: {
+	message: string;
+	duration: number;
+	gravity: number;
+}) => Toast.showWithGravity(message, duration || Toast.SHORT, gravity || 10);

@@ -6,8 +6,8 @@ export const ROUTES = Object.freeze({
 	SPEAKERS: 'Speakers',
 	SPEAKER_DETAILS: 'SpeakerDetails',
 	SPONSERS: 'Sponsors',
-	NEWS: 'News',
+	ANNOUNCEMENTS: 'Announcements',
 	NEWS_DETAILS: 'News Details',
-	ABSTRACTS_AND_WHITEPAPERS: 'Abstracts and Whitepapers',
+	ABSTRACTS: 'Abstracts and Whitepapers',
 	SETTINGS: 'Settings',
 });

@@ -1,7 +1,6 @@
 import {
 	Dimensions,
 	Image,
-	Pressable,
 	StyleSheet,
 	View,
 	Animated,
@@ -14,7 +13,7 @@ import { useNavigate } from '@/hooks/useNavigate';
 import { ROUTES } from '@/navs/routes';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { ISpeaker } from '../Speakers';
+import { ISpeaker } from '@/types';
 
 interface Props {
 	speaker: ISpeaker;
@@ -25,15 +24,13 @@ const Speaker = ({ speaker }: Props) => {
 	const scaleValue = useRef(new Animated.Value(1)).current;
 	const opacityValue = useRef(new Animated.Value(1)).current;
 
-	// Default speaker data if none provided
-	const {
-		name = 'John Doe',
-		position = 'Senior Lecturer at University of Port Harcourt',
-		image = require('@/assets/event-poster.png'),
-		organization = '',
-		topics = [],
-		isFeatured = false,
-	} = speaker || {};
+	const topics = ['AI & ML', 'Big Data'];
+
+	const SPEAKER_TYPE_COLORS: Record<string, string> = {
+		'Keynote Speaker': '#FF5722',
+		'Plenary Speaker': '#3F51B5',
+		Speaker: '#4CAF50',
+	};
 
 	const handlePressIn = () => {
 		Animated.parallel([
@@ -76,18 +73,27 @@ const Speaker = ({ speaker }: Props) => {
 			<Animated.View
 				style={[
 					styles.container,
-					isFeatured && styles.featuredContainer,
+					styles.featuredContainer,
 					{
 						transform: [{ scale: scaleValue }],
 						opacity: opacityValue,
 					},
 				]}
 			>
-				{/* Featured ribbon */}
-				{isFeatured && (
-					<View style={styles.featuredBadge}>
+				{speaker.speakerType && (
+					<View
+						style={[
+							styles.speakerType,
+							{
+								backgroundColor:
+									SPEAKER_TYPE_COLORS[speaker.speakerType] || COLORS.primary,
+							},
+						]}
+					>
 						<Ionicons name="star" size={14} color={COLORS.white} />
-						<AppText style={styles.featuredText}>Featured</AppText>
+						<AppText style={styles.speakerTypeText}>
+							{speaker.speakerType}
+						</AppText>
 					</View>
 				)}
 
@@ -100,7 +106,19 @@ const Speaker = ({ speaker }: Props) => {
 						end={{ x: 1, y: 1 }}
 					>
 						<View style={styles.imageContainer}>
-							<Image source={image} style={styles.image} resizeMode="cover" />
+							{speaker.image ? (
+								<Image
+									source={{
+										uri:
+											process.env.EXPO_PUBLIC_API_URL +
+											speaker.image?.formats.small.url,
+									}}
+									style={styles.image}
+									resizeMode="cover"
+								/>
+							) : (
+								<Ionicons name="person-circle" size={96} color={COLORS.grey2} />
+							)}
 						</View>
 					</LinearGradient>
 				</View>
@@ -108,17 +126,17 @@ const Speaker = ({ speaker }: Props) => {
 				{/* Speaker info */}
 				<View style={styles.infoContainer}>
 					<AppText style={styles.name} numberOfLines={1}>
-						{name}
+						{speaker.fullname}
 					</AppText>
 
-					{organization ? (
-						<AppText style={styles.organization} numberOfLines={1}>
-							{organization}
-						</AppText>
-					) : null}
+					{/* {speaker?.organisation ? ( */}
+					<AppText style={styles.organization} numberOfLines={1}>
+						Organisation
+					</AppText>
+					{/* ) : null} */}
 
 					<AppText style={styles.position} numberOfLines={2}>
-						{position}
+						{speaker.title}
 					</AppText>
 
 					{topics.length > 0 && (
@@ -128,6 +146,7 @@ const Speaker = ({ speaker }: Props) => {
 									<AppText style={styles.topicText}>{topic}</AppText>
 								</View>
 							))}
+
 							{topics.length > 2 && (
 								<View style={styles.moreTopics}>
 									<AppText style={styles.moreTopicsText}>
@@ -167,7 +186,7 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: COLORS.primaryLight,
 	},
-	featuredBadge: {
+	speakerType: {
 		position: 'absolute',
 		top: 12,
 		right: 12,
@@ -179,7 +198,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 4,
 		zIndex: 2,
 	},
-	featuredText: {
+	speakerTypeText: {
 		color: COLORS.white,
 		fontSize: 12,
 		fontWeight: '600',
@@ -199,6 +218,8 @@ const styles = StyleSheet.create({
 		borderRadius: 48,
 		overflow: 'hidden',
 		backgroundColor: COLORS.greyLightPlus,
+		justifyContent: 'center',
+		alignItems: 'center',
 	},
 	image: {
 		width: '100%',
@@ -260,101 +281,3 @@ const styles = StyleSheet.create({
 		fontWeight: '500',
 	},
 });
-
-// import {
-// 	Dimensions,
-// 	Image,
-// 	Pressable,
-// 	StyleSheet,
-// 	TouchableOpacity,
-// 	View,
-// } from 'react-native';
-// import React from 'react';
-// import { COLORS } from '@/constants/colors';
-// import { AppText } from '@/components';
-// import { useNavigate } from '@/hooks/useNavigate';
-// import { ROUTES } from '@/navs/routes';
-
-// const Speaker = () => {
-// 	const navigation = useNavigate();
-
-// 	return (
-// 		<Pressable
-// 			style={({ pressed }) => [styles.container, pressed && styles.pressed]}
-// 			onPress={() => navigation.navigate(ROUTES.SPEAKER_DETAILS)}
-// 		>
-// 			<View style={styles.imageContainer}>
-// 				<Image
-// 					source={require('@/assets/event-poster.png')}
-// 					style={styles.image}
-// 					resizeMode="cover"
-// 				/>
-// 			</View>
-// 			<AppText style={styles.name} numberOfLines={1}>
-// 				John Doe
-// 			</AppText>
-// 			<AppText style={styles.position} numberOfLines={2}>
-// 				Senior Lecturer at University of Port Harcourt
-// 			</AppText>
-// 		</Pressable>
-// 	);
-// };
-
-// export default Speaker;
-
-// const { width } = Dimensions.get('window');
-// const CARD_WIDTH = width / 2 - 24;
-
-// const styles = StyleSheet.create({
-// 	container: {
-// 		width: CARD_WIDTH,
-// 		borderRadius: 16,
-// 		padding: 16,
-// 		alignItems: 'center',
-// 		backgroundColor: COLORS.white,
-// 		// Shadow for iOS
-// 		shadowColor: COLORS.black,
-// 		shadowOffset: {
-// 			width: 0,
-// 			height: 2,
-// 		},
-// 		shadowOpacity: 0.1,
-// 		shadowRadius: 4,
-// 		// Elevation for Android
-// 		elevation: 4,
-// 		marginBottom: 8,
-// 	},
-// 	pressed: {
-// 		opacity: 0.9,
-// 		transform: [{ scale: 0.98 }],
-// 	},
-// 	imageContainer: {
-// 		width: 96,
-// 		height: 96,
-// 		borderRadius: 48,
-// 		overflow: 'hidden',
-// 		borderWidth: 2,
-// 		borderColor: COLORS.greyLight,
-// 		marginBottom: 12,
-// 	},
-// 	image: {
-// 		width: '100%',
-// 		height: '100%',
-// 	},
-// 	name: {
-// 		fontSize: 16,
-// 		fontWeight: '600',
-// 		marginTop: 4,
-// 		textAlign: 'center',
-// 		color: COLORS.dark,
-// 		width: '100%',
-// 	},
-// 	position: {
-// 		textAlign: 'center',
-// 		color: COLORS.grey,
-// 		marginTop: 4,
-// 		fontSize: 13,
-// 		lineHeight: 18,
-// 		width: '100%',
-// 	},
-// });

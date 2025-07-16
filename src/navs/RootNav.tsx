@@ -4,13 +4,15 @@ import AuthStack from './AuthStack';
 import AppStack from './AppStack';
 import { COLORS } from '@/constants/colors';
 import { useAuth } from '@/contexts/AuthContext';
+import { ActivityIndicator, View } from 'react-native';
 
 const RootNav = () => {
-	const { isAuthenticated } = useAuth();
+	const { user } = useAuth();
+
 
 	return (
 		<NavigationContainer theme={navigationTheme}>
-			{isAuthenticated ? <AppStack /> : <AuthStack />}
+			{user ? <AppStack /> : <AuthStack />}
 		</NavigationContainer>
 	);
 };

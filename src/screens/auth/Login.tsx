@@ -8,26 +8,47 @@ import {
 	Image,
 	SafeAreaView,
 	Dimensions,
+	ActivityIndicator,
 } from 'react-native';
 import React, { useState } from 'react';
 import { AppText } from '@/components';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/constants/colors';
 import { useAuth } from '@/contexts/AuthContext';
+import Toast from 'react-native-simple-toast';
+import { showToastWithGravity } from '@/utils/showToast';
 
 const Login = () => {
 	const [email, setEmail] = useState('');
 	const [passcode, setPasscode] = useState('');
 	const [showPasscode, setShowPasscode] = useState(false);
-	const { login, isLoading } = useAuth();
+	const [isLoading, setIsLoading] = useState(false);
 
-	const handleLogin = () => {
-		console.log('Logging in with:', email, passcode);
-		login(email, passcode);
-	};
+	const { login } = useAuth();
 
 	const handleResendPasscode = () => {
 		console.log('Resending passcode to:', email);
+	};
+
+	const handleLogin = async () => {
+		setIsLoading(true);
+		try {
+			await login(email, passcode);
+			showToastWithGravity({
+				message: 'Login successful',
+				duration: Toast.LONG,
+				gravity: 10,
+			});
+		} catch (error: any) {
+			console.log('Login failed:', error);
+			if (error.response?.data?.error?.message) {
+				console.log(error.response.data.error.message);
+			} else {
+				console.log('Login failed. Please try again.');
+			}
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	return (
@@ -126,9 +147,13 @@ const Login = () => {
 								onPress={handleLogin}
 								disabled={isLoading || !email || passcode.length < 6}
 							>
-								<AppText style={styles.buttonText}>
-									{isLoading ? 'VERIFYING...' : 'VERIFY & ENTER'}
-								</AppText>
+								{isLoading ? (
+									<ActivityIndicator size="large" color={COLORS.white} />
+								) : (
+									<AppText style={styles.buttonText}>
+										{isLoading ? 'VERIFYING...' : 'VERIFY & ENTER'}
+									</AppText>
+								)}
 							</TouchableOpacity>
 						</View>
 

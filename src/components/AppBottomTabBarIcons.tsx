@@ -20,9 +20,9 @@ const AppBottomTabBarIcons = ({ focused, color, size }: Props) => {
 		iconName = focused ? 'people-circle' : 'people-circle-outline';
 	} else if (route.name === ROUTES.SPONSERS) {
 		iconName = focused ? 'ribbon' : 'ribbon-outline';
-	} else if (route.name === ROUTES.NEWS) {
-		iconName = focused ? 'newspaper' : 'newspaper-outline';
-	} else if (route.name === ROUTES.ABSTRACTS_AND_WHITEPAPERS) {
+	} else if (route.name === ROUTES.ANNOUNCEMENTS) {
+		iconName = focused ? 'notifications' : 'notifications-outline';
+	} else if (route.name === ROUTES.ABSTRACTS) {
 		iconName = focused ? 'document-text' : 'document-text-outline';
 	}
 

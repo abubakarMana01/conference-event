@@ -3,13 +3,7 @@ import { ROUTES } from './routes';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { AppBottomTabBarIcons, AppText } from '@/components';
-import {
-	AbstractsAndWhitepapers,
-	Event,
-	News,
-	Speakers,
-	Sponsors,
-} from '@/screens';
+import { Abstracts, Event, Announcements, Speakers, Sponsors } from '@/screens';
 import { useNavigate } from '@/hooks/useNavigate';
 import { COLORS } from '@/constants/colors';
 
@@ -36,25 +30,26 @@ const AppBottomTabs = () => {
 					headerLeft: EventHeaderLeft,
 				}}
 			/>
-			<Tab.Screen
-				name={ROUTES.NEWS}
-				component={News}
-				options={{ headerTitle: 'Event News' }}
-			/>
-			<Tab.Screen
-				name={ROUTES.SPEAKERS}
-				component={Speakers}
-			/>
+			<Tab.Screen name={ROUTES.SPEAKERS} component={Speakers} />
 			<Tab.Screen
 				name={ROUTES.SPONSERS}
 				component={Sponsors}
 				options={{ headerTitle: 'Our Sponsors' }}
 			/>
-
 			<Tab.Screen
-				name={ROUTES.ABSTRACTS_AND_WHITEPAPERS}
-				component={AbstractsAndWhitepapers}
+				name={ROUTES.ABSTRACTS}
+				component={Abstracts}
 				options={{ title: 'Abstracts' }}
+			/>
+			<Tab.Screen
+				name={ROUTES.ANNOUNCEMENTS}
+				component={Announcements}
+				options={{
+					headerTitle: 'Announcements',
+					title: 'Updates',
+					tabBarBadge: 3,
+					tabBarBadgeStyle: styles.tabBarBadgeStyle,
+				}}
 			/>
 		</Tab.Navigator>
 	);
@@ -117,7 +112,6 @@ const user = {
 };
 
 const styles = StyleSheet.create({
-	// Event Header User Details
 	userAvatar: {
 		width: 36,
 		height: 36,
@@ -161,6 +155,10 @@ const styles = StyleSheet.create({
 		color: COLORS.white,
 		marginLeft: 6,
 		fontWeight: '500',
+		fontSize: 12,
+	},
+	tabBarBadgeStyle: {
+		backgroundColor: COLORS.danger,
 		fontSize: 12,
 	},
 });

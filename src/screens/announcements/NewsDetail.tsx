@@ -16,10 +16,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { format } from 'date-fns';
 import { LinearGradient } from 'expo-linear-gradient';
-import { INews } from './News';
+import type { IAnnouncement } from '@/types';
 
 const NewsDetailScreen = () => {
-	const route = useRoute() as { params: { newsItem: INews } };
+	const route = useRoute() as { params: { newsItem: IAnnouncement } };
 	const navigation = useNavigation();
 	const { newsItem } = route.params || {};
 
@@ -35,9 +35,9 @@ const NewsDetailScreen = () => {
 	const handleShare = async () => {
 		try {
 			await Share.share({
-				message: `Check out this event update: ${newsItem.title}\n\n${newsItem.content}`,
-				title: newsItem.title,
-				url: newsItem.link || 'https://our-event-website.com',
+				message: `Check out this event update: ${newsItem.description}`,
+				title: 'Announcement',
+				// url: newsItem.link || 'https://our-event-website.com',
 			});
 		} catch (error) {
 			if (error instanceof Error) {
@@ -52,7 +52,6 @@ const NewsDetailScreen = () => {
 
 	return (
 		<View style={styles.container}>
-			{/* Header with back button */}
 			<LinearGradient
 				colors={['rgba(0,0,0,0.7)', 'transparent']}
 				style={styles.header}
@@ -66,10 +65,15 @@ const NewsDetailScreen = () => {
 				contentContainerStyle={styles.scrollContainer}
 				bounces={false}
 			>
-				{/* News Image */}
-				{newsItem.image && (
+				{newsItem.image ? (
 					<Image
 						source={newsItem.image}
+						style={styles.newsImage}
+						resizeMode="cover"
+					/>
+				) : (
+					<Image
+						source={require('@/assets/event-poster.png')}
 						style={styles.newsImage}
 						resizeMode="cover"
 					/>
@@ -82,21 +86,23 @@ const NewsDetailScreen = () => {
 						<View
 							style={[
 								styles.categoryBadge,
-								{ backgroundColor: getCategoryColor(newsItem.category) },
+								{ backgroundColor: getCategoryColor(newsItem.delivery_option) },
 							]}
 						>
-							<AppText style={styles.categoryText}>{newsItem.category}</AppText>
+							<AppText style={styles.categoryText}>
+								{newsItem.delivery_option}
+							</AppText>
 						</View>
 						<AppText style={styles.dateText}>
-							{format(new Date(newsItem.date), 'MMMM d, yyyy • h:mm a')}
+							{format(new Date(newsItem.createdAt), 'MMMM d, yyyy • h:mm a')}
 						</AppText>
 					</View>
 
 					{/* Title */}
-					<AppText style={styles.title}>{newsItem.title}</AppText>
+					<AppText style={styles.title}>Title</AppText>
 
 					{/* Content */}
-					<AppText style={styles.content}>{newsItem.content}</AppText>
+					<AppText style={styles.content}>{newsItem.description}</AppText>
 
 					{/* Link (if available) */}
 					{newsItem.link && (
@@ -125,11 +131,11 @@ const NewsDetailScreen = () => {
 // Helper function for category colors
 const getCategoryColor = (category: string) => {
 	switch (category.toLowerCase()) {
-		case 'update':
+		case 'important':
 			return '#4A90E2';
-		case 'announcement':
+		case 'standard':
 			return '#7ED321';
-		case 'reminder':
+		case 'urgent':
 			return '#F5A623';
 		case 'logistics':
 			return '#BD10E0';
