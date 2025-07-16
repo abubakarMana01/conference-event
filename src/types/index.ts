@@ -10,6 +10,30 @@ export interface PaginatedResponse<T> {
 	};
 }
 
+export interface User {
+	id: number;
+	documentId: string;
+	username: string;
+	email: string;
+	provider: string;
+	confirmed: boolean;
+	blocked: boolean;
+	userType: string;
+	organisation: string;
+	category: string;
+	checkedIn: boolean;
+	createdAt: string;
+	updatedAt: string;
+	publishedAt: string;
+	transactionRef: null;
+	geoZone: null;
+	state: string;
+	country: string;
+	phone: string;
+	passcode: string;
+	paidAt: null;
+}
+
 export interface ImageFormats {
 	[key: string | 'medium' | 'large' | 'thumbnail' | 'small']: {
 		url: string;

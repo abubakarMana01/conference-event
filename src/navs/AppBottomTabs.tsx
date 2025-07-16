@@ -6,6 +6,7 @@ import { AppBottomTabBarIcons, AppText } from '@/components';
 import { Abstracts, Event, Announcements, Speakers, Sponsors } from '@/screens';
 import { useNavigate } from '@/hooks/useNavigate';
 import { COLORS } from '@/constants/colors';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Tab = createBottomTabNavigator();
 
@@ -59,22 +60,23 @@ export default AppBottomTabs;
 
 const HeaderRight = () => {
 	const navigation = useNavigate();
+	const { user } = useAuth();
 
 	return (
 		<View style={styles.headerRightContainer}>
 			<View
 				style={[
 					styles.checkInStatus,
-					user.checkedIn ? styles.checkedIn : styles.notCheckedIn,
+					user?.checkedIn ? styles.checkedIn : styles.notCheckedIn,
 				]}
 			>
 				<Ionicons
-					name={user.checkedIn ? 'checkmark-circle' : 'time'}
+					name={user?.checkedIn ? 'checkmark-circle' : 'time'}
 					size={16}
 					color={COLORS.white}
 				/>
 				<AppText style={styles.checkInText}>
-					{user.checkedIn ? 'Checked In' : 'Check In Available'}
+					{user?.checkedIn ? 'Checked In' : 'Check In Available'}
 				</AppText>
 			</View>
 			<Pressable onPress={() => navigation.navigate(ROUTES.SETTINGS)}>
@@ -84,26 +86,32 @@ const HeaderRight = () => {
 	);
 };
 
-const EventHeaderLeft = () => (
-	<View
-		style={{
-			marginLeft: 16,
-			flexDirection: 'row',
-			alignItems: 'center',
-			gap: 8,
-		}}
-	>
-		<Image source={user.avatar} style={styles.userAvatar} />
-		<View>
-			<AppText style={styles.userName}>{user.name}</AppText>
-			<View style={styles.badge}>
-				<AppText style={styles.badgeText}>{user.category}</AppText>
+const EventHeaderLeft = () => {
+	const { user } = useAuth();
+	return (
+		<View
+			style={{
+				marginLeft: 16,
+				flexDirection: 'row',
+				alignItems: 'center',
+				gap: 8,
+			}}
+		>
+			<Image
+				source={require('@/assets/event-poster.png')}
+				style={styles.userAvatar}
+			/>
+			<View>
+				<AppText style={styles.userName}>{user?.username}</AppText>
+				<View style={styles.badge}>
+					<AppText style={styles.badgeText}>{user?.category}</AppText>
+				</View>
 			</View>
 		</View>
-	</View>
-);
+	);
+};
 
-const user = {
+const DUMMY_USER = {
 	name: 'Alex Johnson',
 	country: 'United States',
 	category: 'Premium Attendee',
@@ -124,6 +132,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 6,
 		marginTop: 2,
 		paddingVertical: 2,
+		alignSelf: 'flex-start',
 	},
 	badgeText: {
 		fontSize: 10,

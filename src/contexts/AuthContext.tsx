@@ -11,10 +11,7 @@ import { loginUser } from '@/services/auth.service';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLORS } from '@/constants/colors';
 import { showToast } from '@/utils';
-
-interface User {
-	email: string;
-}
+import { User } from '@/types';
 
 interface AuthContextType {
 	user: User | null;
@@ -48,7 +45,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 				throw new Error('Passcode must be 6 digits');
 			}
 
-			console.log('Payload', email, passcode);
 			const res = await loginUser(email, passcode);
 			setUser(res.user);
 			await AsyncStorage.setItem('auth', JSON.stringify(res));
