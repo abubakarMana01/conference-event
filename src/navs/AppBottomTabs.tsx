@@ -104,19 +104,11 @@ const EventHeaderLeft = () => {
 			<View>
 				<AppText style={styles.userName}>{user?.username}</AppText>
 				<View style={styles.badge}>
-					<AppText style={styles.badgeText}>{user?.category}</AppText>
+					<AppText style={styles.badgeText}>{user?.userType}</AppText>
 				</View>
 			</View>
 		</View>
 	);
-};
-
-const DUMMY_USER = {
-	name: 'Alex Johnson',
-	country: 'United States',
-	category: 'Premium Attendee',
-	avatar: require('@/assets/event-poster.png'),
-	checkedIn: true,
 };
 
 const styles = StyleSheet.create({
@@ -138,6 +130,7 @@ const styles = StyleSheet.create({
 		fontSize: 10,
 		color: COLORS.primary,
 		fontWeight: '500',
+		textTransform: 'capitalize',
 	},
 
 	// Header Right

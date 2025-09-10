@@ -148,7 +148,7 @@ const Login = () => {
 								disabled={isLoading || !email || passcode.length < 6}
 							>
 								{isLoading ? (
-									<ActivityIndicator size="large" color={COLORS.white} />
+									<ActivityIndicator size="small" color={COLORS.white} />
 								) : (
 									<AppText style={styles.buttonText}>
 										{isLoading ? 'VERIFYING...' : 'VERIFY & ENTER'}
