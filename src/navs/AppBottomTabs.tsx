@@ -48,7 +48,7 @@ const AppBottomTabs = () => {
 				options={{
 					headerTitle: 'Announcements',
 					title: 'Updates',
-					tabBarBadge: 3,
+					tabBarBadge: 1,
 					tabBarBadgeStyle: styles.tabBarBadgeStyle,
 				}}
 			/>
@@ -102,7 +102,9 @@ const EventHeaderLeft = () => {
 				style={styles.userAvatar}
 			/>
 			<View>
-				<AppText style={styles.userName}>{user?.username}</AppText>
+				<AppText style={styles.userName}>
+					{user?.username.split(' ')[0]}
+				</AppText>
 				<View style={styles.badge}>
 					<AppText style={styles.badgeText}>{user?.userType}</AppText>
 				</View>
