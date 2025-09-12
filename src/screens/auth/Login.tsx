@@ -60,7 +60,7 @@ const Login = () => {
 				>
 					<View style={styles.logoContainer}>
 						<Image
-							source={require('@/assets/event-poster.png')}
+							source={require('@/assets/scibiz-logo.png')}
 							style={styles.logo}
 							resizeMode="contain"
 						/>
@@ -185,12 +185,17 @@ const styles = StyleSheet.create({
 	keyboardAvoidingView: {
 		flex: 1,
 	},
-	logoContainer: {},
+	logoContainer: {
+		paddingTop: Platform.select({
+			ios: 0,
+			android: 16,
+		}),
+	},
 	logo: {
-		width: 100,
-		height: 100,
+		width: 80,
+		height: 80,
 		borderRadius: 16,
-		objectFit: 'cover',
+		objectFit: 'contain',
 		marginBottom: 20,
 	},
 	title: {

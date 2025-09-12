@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 16,
 		paddingVertical: Platform.select({
 			ios: 12,
-			android: 6,
+			android: 4,
 		}),
 		borderWidth: 1,
 		borderColor: COLORS.greyLight,

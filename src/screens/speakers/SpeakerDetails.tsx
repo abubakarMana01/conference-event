@@ -50,7 +50,7 @@ const SpeakerDetails = () => {
 
 	return (
 		<View style={styles.container}>
-			<StatusBar barStyle="light-content" />
+			{Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
 
 			{/* Header with back button */}
 			<LinearGradient

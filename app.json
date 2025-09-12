@@ -23,7 +23,7 @@
 			},
 			"edgeToEdgeEnabled": true,
 			"package": "com.abubakarmana01.cclconference",
-			"versionCode": 4
+			"versionCode": 5
 		},
 		"web": {
 			"favicon": "./assets/logo.png"
