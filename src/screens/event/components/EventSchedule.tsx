@@ -5,6 +5,7 @@ import {
 	StyleSheet,
 	View,
 	ActivityIndicator,
+	Platform,
 } from 'react-native';
 import React, { useState } from 'react';
 import { AppText } from '@/components';
@@ -131,8 +132,14 @@ const styles = StyleSheet.create({
 		margin: 16,
 		shadowColor: COLORS.dark,
 		shadowOffset: { width: 0, height: 0 },
-		shadowOpacity: 0.1,
-		shadowRadius: 8,
+		shadowOpacity: Platform.select({
+			ios: 0.1,
+			android: 0,
+		}),
+		shadowRadius: Platform.select({
+			ios: 8,
+			android: 0,
+		}),
 		borderWidth: 1,
 		borderColor: COLORS.greyLight,
 		elevation: 3,

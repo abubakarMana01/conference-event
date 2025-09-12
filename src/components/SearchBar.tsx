@@ -1,4 +1,5 @@
 import {
+	Platform,
 	StyleSheet,
 	Text,
 	TextInput,
@@ -52,9 +53,12 @@ const styles = StyleSheet.create({
 		backgroundColor: COLORS.white,
 		borderRadius: 12,
 		paddingHorizontal: 16,
-		paddingVertical: 12,
-    borderWidth: 1,
-    borderColor: COLORS.greyLight
+		paddingVertical: Platform.select({
+			ios: 12,
+			android: 6,
+		}),
+		borderWidth: 1,
+		borderColor: COLORS.greyLight,
 		// shadowColor: COLORS.black,
 		// shadowOffset: { width: 0, height: 2 },
 		// shadowOpacity: 0.1,
