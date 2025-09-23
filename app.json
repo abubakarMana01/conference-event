@@ -14,7 +14,10 @@
 		},
 		"ios": {
 			"supportsTablet": true,
-			"bundleIdentifier": "com.abubakarmana01.ccl-conference"
+			"bundleIdentifier": "com.cyphercrescent.cclconference",
+			"infoPlist": {
+				"ITSAppUsesNonExemptEncryption": false
+			}
 		},
 		"android": {
 			"adaptiveIcon": {

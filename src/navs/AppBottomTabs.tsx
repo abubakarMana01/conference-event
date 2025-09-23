@@ -98,7 +98,7 @@ const EventHeaderLeft = () => {
 			}}
 		>
 			<Image
-				source={require('@/assets/event-poster.png')}
+				source={require('@/assets/scibiz-logo.png')}
 				style={styles.userAvatar}
 			/>
 			<View>
@@ -118,6 +118,9 @@ const styles = StyleSheet.create({
 		width: 36,
 		height: 36,
 		borderRadius: 20,
+		objectFit: 'contain',
+		backgroundColor: COLORS.greyLightPlus,
+		padding: 2,
 	},
 	userName: { fontSize: 16, fontWeight: '600' },
 	badge: {

@@ -11,9 +11,8 @@ import React, { useState } from 'react';
 import { AppText } from '@/components';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { COLORS } from '@/constants/colors';
-import { Ionicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
-import { fetchSchedules } from '@/services/schedules.service'; // Make sure this exists and returns the data
+import { fetchSchedules } from '@/services/schedules.service';
 
 const EventSchedule = () => {
 	const [index, setIndex] = useState(0);

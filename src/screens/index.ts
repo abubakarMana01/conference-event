@@ -9,3 +9,4 @@ export { default as Announcements } from './announcements/Announcements';
 export { default as NewsDetail } from './announcements/NewsDetail';
 export { default as Abstracts } from './abstracts/Abstracts';
 export { default as Settings } from './Settings';
+export { default as ComingSoon } from './ComingSoon';

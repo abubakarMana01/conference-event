@@ -12,6 +12,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { COLORS } from '@/constants/colors';
 import { showToast } from '@/utils';
 import { User } from '@/types';
+import { AxiosError } from 'axios';
 
 interface AuthContextType {
 	user: User | null;
@@ -50,6 +51,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 			await AsyncStorage.setItem('auth', JSON.stringify(res));
 		} catch (error) {
 			console.error('Login error:', error);
+			if (error instanceof AxiosError) {
+				console.log(error.response?.data);
+			}
 			Alert.alert(
 				'Login Failed',
 				error instanceof Error ? error.message : 'Invalid email or passcode',

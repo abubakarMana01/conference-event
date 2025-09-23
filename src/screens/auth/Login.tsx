@@ -9,6 +9,8 @@ import {
 	SafeAreaView,
 	Dimensions,
 	ActivityIndicator,
+	TouchableWithoutFeedback,
+	Keyboard,
 } from 'react-native';
 import React, { useState } from 'react';
 import { AppText } from '@/components';
@@ -52,123 +54,125 @@ const Login = () => {
 	};
 
 	return (
-		<SafeAreaView style={styles.wrapper}>
-			<View style={styles.container}>
-				<KeyboardAvoidingView
-					behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-					style={styles.keyboardAvoidingView}
-				>
-					<View style={styles.logoContainer}>
-						<Image
-							source={require('@/assets/scibiz-logo.png')}
-							style={styles.logo}
-							resizeMode="contain"
-						/>
-						<AppText style={styles.title}>Event Access</AppText>
-						<AppText style={styles.subtitle}>
-							Please enter your email and passcode which was sent to your email
-							address when you registered for the event.
-						</AppText>
-					</View>
-
-					<View
-						style={{
-							flex: 1,
-							marginTop: Dimensions.get('window').height > 600 ? 80 : 60,
-						}}
+		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+			<SafeAreaView style={styles.wrapper}>
+				<View style={styles.container}>
+					<KeyboardAvoidingView
+						behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+						style={styles.keyboardAvoidingView}
 					>
-						<View style={styles.formContainer}>
-							<View style={styles.inputWrapper}>
-								<View style={styles.inputContainer}>
-									<Ionicons
-										name="mail-outline"
-										size={20}
-										color={COLORS.grey}
-										style={styles.inputIcon}
-									/>
-									<TextInput
-										style={styles.input}
-										placeholder="Event registration email"
-										placeholderTextColor={COLORS.grey}
-										value={email}
-										onChangeText={setEmail}
-										keyboardType="email-address"
-										autoCapitalize="none"
-										autoCorrect={false}
-										autoFocus
-									/>
-								</View>
-							</View>
+						<View style={styles.logoContainer}>
+							<Image
+								source={require('@/assets/scibiz-logo.png')}
+								style={styles.logo}
+								resizeMode="contain"
+							/>
+							<AppText style={styles.title}>Event Access</AppText>
+							<AppText style={styles.subtitle}>
+								Please enter your email and passcode which was sent to your
+								email address when you registered for the event.
+							</AppText>
+						</View>
 
-							<View style={styles.inputWrapper}>
-								<View style={styles.inputContainer}>
-									<Ionicons
-										name="lock-closed-outline"
-										size={20}
-										color={COLORS.grey}
-										style={styles.inputIcon}
-									/>
-									<TextInput
-										style={styles.input}
-										placeholder="Enter passcode here"
-										placeholderTextColor={COLORS.grey}
-										value={passcode}
-										onChangeText={setPasscode}
-										secureTextEntry={!showPasscode}
-										maxLength={6}
-									/>
-									<TouchableOpacity
-										onPress={() => setShowPasscode(!showPasscode)}
-										style={styles.visibilityToggle}
-									>
+						<View
+							style={{
+								flex: 1,
+								marginTop: Dimensions.get('window').height > 600 ? 80 : 60,
+							}}
+						>
+							<View style={styles.formContainer}>
+								<View style={styles.inputWrapper}>
+									<View style={styles.inputContainer}>
 										<Ionicons
-											name={showPasscode ? 'eye-off-outline' : 'eye-outline'}
+											name="mail-outline"
 											size={20}
 											color={COLORS.grey}
+											style={styles.inputIcon}
 										/>
-									</TouchableOpacity>
+										<TextInput
+											style={styles.input}
+											placeholder="Event registration email"
+											placeholderTextColor={COLORS.grey}
+											value={email}
+											onChangeText={setEmail}
+											keyboardType="email-address"
+											autoCapitalize="none"
+											autoCorrect={false}
+											autoFocus
+										/>
+									</View>
 								</View>
+
+								<View style={styles.inputWrapper}>
+									<View style={styles.inputContainer}>
+										<Ionicons
+											name="lock-closed-outline"
+											size={20}
+											color={COLORS.grey}
+											style={styles.inputIcon}
+										/>
+										<TextInput
+											style={styles.input}
+											placeholder="Enter passcode here"
+											placeholderTextColor={COLORS.grey}
+											value={passcode}
+											onChangeText={setPasscode}
+											secureTextEntry={!showPasscode}
+											maxLength={6}
+										/>
+										<TouchableOpacity
+											onPress={() => setShowPasscode(!showPasscode)}
+											style={styles.visibilityToggle}
+										>
+											<Ionicons
+												name={showPasscode ? 'eye-off-outline' : 'eye-outline'}
+												size={20}
+												color={COLORS.grey}
+											/>
+										</TouchableOpacity>
+									</View>
+								</View>
+
+								{/* Resend Passcode Link */}
+								<TouchableOpacity onPress={handleResendPasscode}>
+									<AppText style={styles.resendText}>
+										Didn't receive passcode?{' '}
+										<AppText style={styles.resendLink}>Resend</AppText>
+									</AppText>
+								</TouchableOpacity>
+
+								<TouchableOpacity
+									style={[
+										styles.loginButton,
+										(isLoading || !email || passcode.length < 6) &&
+											styles.disabledButton,
+									]}
+									onPress={handleLogin}
+									disabled={isLoading || !email || passcode.length < 6}
+								>
+									{isLoading ? (
+										<ActivityIndicator size="small" color={COLORS.white} />
+									) : (
+										<AppText style={styles.buttonText}>
+											{isLoading ? 'VERIFYING...' : 'VERIFY & ENTER'}
+										</AppText>
+									)}
+								</TouchableOpacity>
 							</View>
 
-							{/* Resend Passcode Link */}
-							<TouchableOpacity onPress={handleResendPasscode}>
-								<AppText style={styles.resendText}>
-									Didn't receive passcode?{' '}
-									<AppText style={styles.resendLink}>Resend</AppText>
+							<View style={styles.footer}>
+								<AppText style={styles.footerText}>
+									Having trouble logging in?
 								</AppText>
-							</TouchableOpacity>
-
-							<TouchableOpacity
-								style={[
-									styles.loginButton,
-									(isLoading || !email || passcode.length < 6) &&
-										styles.disabledButton,
-								]}
-								onPress={handleLogin}
-								disabled={isLoading || !email || passcode.length < 6}
-							>
-								{isLoading ? (
-									<ActivityIndicator size="small" color={COLORS.white} />
-								) : (
-									<AppText style={styles.buttonText}>
-										{isLoading ? 'VERIFYING...' : 'VERIFY & ENTER'}
-									</AppText>
-								)}
-							</TouchableOpacity>
+								<TouchableOpacity>
+									<AppText style={styles.helpLink}>Get Help</AppText>
+								</TouchableOpacity>
+							</View>
 						</View>
-
-						<View style={styles.footer}>
-							<AppText style={styles.footerText}>
-								Having trouble logging in?
-							</AppText>
-							<TouchableOpacity>
-								<AppText style={styles.helpLink}>Get Help</AppText>
-							</TouchableOpacity>
-						</View>
-					</View>
-				</KeyboardAvoidingView>
-			</View>
-		</SafeAreaView>
+					</KeyboardAvoidingView>
+				</View>
+			</SafeAreaView>
+		</TouchableWithoutFeedback>
 	);
 };
 

@@ -11,12 +11,15 @@ import { AppText } from '@/components';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/constants/colors';
 import { useAuth } from '@/contexts/AuthContext';
+import { ROUTES } from '@/navs/routes';
+import { useNavigate } from '@/hooks/useNavigate';
 
 type SettingsOption = {
 	title: string;
 	icon: string;
 	action?: () => void;
 	rightComponent?: React.ReactNode;
+	disabled?: boolean;
 };
 
 type SettingsSection = {
@@ -29,6 +32,7 @@ const Settings = () => {
 	const [notificationsEnabled, setNotificationsEnabled] = useState(true);
 	const [darkModeEnabled, setDarkModeEnabled] = useState(false);
 	const { logout } = useAuth();
+	const navigation = useNavigate();
 
 	const settingsOptions: SettingsSection[] = [
 		{
@@ -38,12 +42,14 @@ const Settings = () => {
 				{
 					title: 'Edit Profile',
 					icon: 'create-outline',
-					action: () => console.log('Edit Profile'),
+					action: () => navigation.navigate(ROUTES.COMING_SOON),
+					disabled: true,
 				},
 				{
 					title: 'Change Password',
 					icon: 'lock-closed-outline',
-					action: () => console.log('Change Password'),
+					action: () => navigation.navigate(ROUTES.COMING_SOON),
+					disabled: true,
 				},
 			],
 		},
@@ -63,18 +69,18 @@ const Settings = () => {
 						/>
 					),
 				},
-				{
-					title: 'Dark Mode',
-					icon: 'moon-outline',
-					rightComponent: (
-						<Switch
-							value={darkModeEnabled}
-							onValueChange={setDarkModeEnabled}
-							thumbColor={COLORS.white}
-							trackColor={{ false: COLORS.greyLight, true: COLORS.primary }}
-						/>
-					),
-				},
+				// {
+				// 	title: 'Dark Mode',
+				// 	icon: 'moon-outline',
+				// 	rightComponent: (
+				// 		<Switch
+				// 			value={darkModeEnabled}
+				// 			onValueChange={setDarkModeEnabled}
+				// 			thumbColor={COLORS.white}
+				// 			trackColor={{ false: COLORS.greyLight, true: COLORS.primary }}
+				// 		/>
+				// 	),
+				// },
 			],
 		},
 		{
@@ -84,17 +90,20 @@ const Settings = () => {
 				{
 					title: 'Help Center',
 					icon: 'help-buoy-outline',
-					action: () => console.log('Help Center'),
+					action: () => navigation.navigate(ROUTES.COMING_SOON),
+					disabled: true,
 				},
 				{
 					title: 'Contact Us',
 					icon: 'mail-outline',
-					action: () => console.log('Contact Us'),
+					action: () => navigation.navigate(ROUTES.COMING_SOON),
+					disabled: true,
 				},
 				{
 					title: 'About',
 					icon: 'information-circle-outline',
-					action: () => console.log('About'),
+					action: () => navigation.navigate(ROUTES.COMING_SOON),
+					disabled: true,
 				},
 			],
 		},
@@ -114,9 +123,13 @@ const Settings = () => {
 								{section.options.map((option, optionIndex) => (
 									<TouchableOpacity
 										key={optionIndex}
-										style={styles.option}
+										style={[
+											styles.option,
+											{ opacity: option.disabled ? 0.5 : 1 },
+										]}
 										onPress={option.action}
 										activeOpacity={0.7}
+										disabled={option.disabled}
 									>
 										<View style={styles.optionLeft}>
 											<Ionicons

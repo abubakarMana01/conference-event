@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AppBottomTabs from './AppBottomTabs';
 import { ROUTES } from './routes';
-import { NewsDetail, Settings, SpeakerDetails } from '@/screens';
+import { NewsDetail, Settings, SpeakerDetails, ComingSoon } from '@/screens';
 import { useNavigate } from '@/hooks/useNavigate';
 import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,13 +20,15 @@ const AppStack = () => {
 		>
 			<Stack.Screen name="Root" component={AppBottomTabs} />
 			<Stack.Screen name={ROUTES.SPEAKER_DETAILS} component={SpeakerDetails} />
-			<Stack.Screen
-				name={ROUTES.NEWS_DETAILS}
-				component={NewsDetail}
-			/>
+			<Stack.Screen name={ROUTES.NEWS_DETAILS} component={NewsDetail} />
 			<Stack.Screen
 				name={ROUTES.SETTINGS}
 				component={Settings}
+				options={{ headerShown: true }}
+			/>
+			<Stack.Screen
+				name={ROUTES.COMING_SOON}
+				component={ComingSoon}
 				options={{ headerShown: true }}
 			/>
 		</Stack.Navigator>
