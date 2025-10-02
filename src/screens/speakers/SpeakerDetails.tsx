@@ -14,33 +14,24 @@ import { COLORS } from '@/constants/colors';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import { useRoute } from '@/hooks/useNavigate';
 
 const SpeakerDetails = () => {
 	const navigation = useNavigation();
-	const speaker = {
-		name: 'Dr. Jane Smith',
-		position: 'Professor of Computer Science',
-		institution: 'Stanford University',
-		bio: 'Dr. Smith is a leading expert in artificial intelligence and machine learning with over 15 years of experience. She has published numerous papers in top-tier conferences and journals, and has advised several successful tech startups.',
-		image: require('@/assets/event-poster.png'),
-		social: {
-			twitter: 'janedoe',
-			linkedin: 'in/janedoe',
-			website: 'janesmith.com',
-		},
-	};
+	const route = useRoute();
+	const speaker = route.params?.speaker;
 
 	const handleSocialPress = (type: 'twitter' | 'linkedin' | 'website') => {
 		let url = '';
 		switch (type) {
 			case 'twitter':
-				url = `https://twitter.com/${speaker.social.twitter}`;
+				url = `https://twitter.com/${speaker?.social?.twitter}`;
 				break;
 			case 'linkedin':
-				url = `https://linkedin.com/${speaker.social.linkedin}`;
+				url = `https://linkedin.com/${speaker?.social?.linkedin}`;
 				break;
 			case 'website':
-				url = `http://${speaker.social.website}`;
+				url = `http://${speaker?.social?.website}`;
 				break;
 		}
 		Linking.openURL(url).catch((err) =>
@@ -52,34 +43,58 @@ const SpeakerDetails = () => {
 		<View style={styles.container}>
 			{Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
 
-			{/* Header with back button */}
-			<LinearGradient
-				colors={['rgba(0,0,0,0.8)', 'transparent']}
-				style={styles.gradient}
+			<TouchableOpacity
+				style={styles.backButton}
+				onPress={() => navigation.goBack()}
 			>
-				<TouchableOpacity
-					style={styles.backButton}
-					onPress={() => navigation.goBack()}
-				>
-					<Ionicons name="arrow-back" size={24} color={COLORS.white} />
-				</TouchableOpacity>
-
-				<Image source={speaker.image} style={styles.speakerImage} />
-			</LinearGradient>
-
+				<Ionicons name="arrow-back" size={24} color={COLORS.white} />
+			</TouchableOpacity>
 			<ScrollView contentContainerStyle={styles.scrollContainer}>
+				{/* Header with back button */}
+				<LinearGradient
+					colors={['rgba(0,0,0,0.8)', 'transparent']}
+					style={styles.gradient}
+				>
+					{speaker.image?.formats?.small?.url ? (
+						<Image
+							source={{
+								uri:
+									process.env.EXPO_PUBLIC_API_URL +
+									speaker.image.formats?.small?.url,
+							}}
+							style={styles.speakerImage}
+							resizeMode="cover"
+						/>
+					) : (
+						<Ionicons
+							name="person-circle"
+							size={195}
+							color={COLORS.grey2}
+							style={[
+								{
+									backgroundColor: COLORS.greyLight,
+									justifyContent: 'center',
+									alignItems: 'center',
+									borderRadius: 100,
+								},
+							]}
+						/>
+					)}
+				</LinearGradient>
 				{/* Speaker Info */}
 				<View style={styles.infoContainer}>
-					<Text style={styles.name}>{speaker.name}</Text>
-					<Text style={styles.position}>{speaker.position}</Text>
-					<Text style={styles.institution}>{speaker.institution}</Text>
+					<Text style={styles.name}>
+						{speaker.title} {speaker.fullname}
+					</Text>
+					{/* <Text style={styles.position}>{speaker.position}</Text> */}
+					{/* <Text style={styles.institution}>{speaker.institution}</Text> */}
 
 					{/* Divider */}
 					<View style={styles.divider} />
 
 					{/* Bio Section */}
 					<Text style={styles.sectionTitle}>About</Text>
-					<Text style={styles.bio}>{speaker.bio}</Text>
+					<Text style={styles.bio}>{speaker.profile}</Text>
 
 					{/* Social Links */}
 					<Text style={styles.sectionTitle}>Connect</Text>
@@ -138,7 +153,7 @@ const styles = StyleSheet.create({
 		width: 40,
 		height: 40,
 		borderRadius: 20,
-		backgroundColor: 'rgba(255,255,255,0.2)',
+		backgroundColor: COLORS.grey,
 		justifyContent: 'center',
 		alignItems: 'center',
 		zIndex: 10,

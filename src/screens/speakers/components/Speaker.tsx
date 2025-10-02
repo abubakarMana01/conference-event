@@ -24,7 +24,8 @@ const Speaker = ({ speaker }: Props) => {
 	const scaleValue = useRef(new Animated.Value(1)).current;
 	const opacityValue = useRef(new Animated.Value(1)).current;
 
-	const topics = ['AI & ML', 'Big Data'];
+	// Placeholder for topics - replace with actual data when available
+	const topics: any[] = [];
 
 	const SPEAKER_TYPE_COLORS: Record<string, string> = {
 		'Keynote Speaker': '#FF5722',
@@ -106,12 +107,12 @@ const Speaker = ({ speaker }: Props) => {
 						end={{ x: 1, y: 1 }}
 					>
 						<View style={styles.imageContainer}>
-							{speaker.image ? (
+							{speaker.image?.formats?.small?.url ? (
 								<Image
 									source={{
 										uri:
 											process.env.EXPO_PUBLIC_API_URL +
-											speaker.image?.formats.small.url,
+											speaker.image?.formats?.small?.url,
 									}}
 									style={styles.image}
 									resizeMode="cover"
@@ -126,7 +127,7 @@ const Speaker = ({ speaker }: Props) => {
 				{/* Speaker info */}
 				<View style={styles.infoContainer}>
 					<AppText style={styles.name} numberOfLines={1}>
-						{speaker.fullname}
+						{speaker.title} {speaker.fullname}
 					</AppText>
 
 					{/* {speaker?.organisation ? ( */}
@@ -136,7 +137,7 @@ const Speaker = ({ speaker }: Props) => {
 					{/* ) : null} */}
 
 					<AppText style={styles.position} numberOfLines={2}>
-						{speaker.title}
+						{speaker.profile}
 					</AppText>
 
 					{topics.length > 0 && (

@@ -37,7 +37,7 @@ const Sponsor = ({ sponsor }: Props) => {
 						source={{
 							uri:
 								process.env.EXPO_PUBLIC_API_URL +
-								(sponsor.image.formats.small?.url || sponsor.image.url),
+								(sponsor.image.formats?.small?.url || sponsor.image.url),
 						}}
 						style={styles.sponsorImage}
 						resizeMode="contain"

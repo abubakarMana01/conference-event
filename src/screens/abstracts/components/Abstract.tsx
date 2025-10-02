@@ -28,7 +28,7 @@ const Abstract = ({ abstract }: Props) => {
 			onPress={() => handleOpenPdf(abstract.abstract?.url)}
 		>
 			<Image
-				source={require('@/assets/event-poster.png')}
+				source={require('@/assets/theme-poster.png')}
 				style={styles.abstractImage}
 			/>
 			<LinearGradient

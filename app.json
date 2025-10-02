@@ -1,14 +1,14 @@
 {
 	"expo": {
-		"name": "scibiz",
+		"name": "SciBiz 2025",
 		"slug": "ccl-conference",
-		"version": "1.0.0",
+		"version": "1.0.2",
 		"orientation": "portrait",
-		"icon": "./assets/logo.png",
+		"icon": "./assets/scibiz-logo-sm.png",
 		"userInterfaceStyle": "light",
 		"newArchEnabled": true,
 		"splash": {
-			"image": "./assets/logo.png",
+			"image": "./assets/splash-view.png",
 			"resizeMode": "contain",
 			"backgroundColor": "#ffffff"
 		},
@@ -21,15 +21,15 @@
 		},
 		"android": {
 			"adaptiveIcon": {
-				"foregroundImage": "./assets/logo.png",
+				"foregroundImage": "./assets/scibiz-logo.png",
 				"backgroundColor": "#ffffff"
 			},
 			"edgeToEdgeEnabled": true,
 			"package": "com.abubakarmana01.cclconference",
-			"versionCode": 6
+			"versionCode": 8
 		},
 		"web": {
-			"favicon": "./assets/logo.png"
+			"favicon": "./assets/scibiz-logo.png"
 		},
 		"extra": {
 			"eas": {

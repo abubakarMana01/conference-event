@@ -6,6 +6,7 @@ import {
 	View,
 	ActivityIndicator,
 	Platform,
+	TouchableOpacity,
 } from 'react-native';
 import React, { useState } from 'react';
 import { AppText } from '@/components';
@@ -13,6 +14,8 @@ import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { COLORS } from '@/constants/colors';
 import { useQuery } from '@tanstack/react-query';
 import { fetchSchedules } from '@/services/schedules.service';
+import { useNavigate } from '@/hooks/useNavigate';
+import { ROUTES } from '@/navs/routes';
 
 const EventSchedule = () => {
 	const [index, setIndex] = useState(0);
@@ -74,6 +77,8 @@ const EventSchedule = () => {
 export default EventSchedule;
 
 const IDaySchedule = ({ dayData }: { dayData: any }) => {
+	const navigation = useNavigate();
+
 	return (
 		<ScrollView>
 			<View style={styles.dayContainer}>
@@ -111,10 +116,31 @@ const IDaySchedule = ({ dayData }: { dayData: any }) => {
 										size={14}
 										color={COLORS.primary}
 									/> */}
-									<AppText style={styles.locationText}>
+									<AppText style={styles.locationText} numberOfLines={2}>
 										{item.detail.replace(/# /g, '')}
 									</AppText>
 								</View>
+							)}
+							{item.detail && (
+								<TouchableOpacity
+									style={{ marginTop: 8, marginLeft: 'auto' }}
+									onPress={() =>
+										navigation.navigate(ROUTES.EVENT_DETAILS, {
+											event: item,
+										})
+									}
+								>
+									<AppText
+										style={{
+											fontSize: 12,
+											opacity: 0.5,
+											textDecorationLine: 'underline',
+											fontStyle: 'italic',
+										}}
+									>
+										See more
+									</AppText>
+								</TouchableOpacity>
 							)}
 						</View>
 					</Pressable>

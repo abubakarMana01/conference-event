@@ -122,7 +122,7 @@ const Abstracts = () => {
 				</ScrollView>
 
 				<FlatList
-					data={allAbstracts}
+					data={allAbstracts.filter((abstract) => !!abstract.approved)}
 					renderItem={({ item }) => <Abstract abstract={item} />}
 					keyExtractor={(item) => String(item.id)}
 					scrollEnabled={false}

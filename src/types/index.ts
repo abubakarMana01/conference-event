@@ -65,6 +65,7 @@ export interface ISpeaker {
 
 export interface IAbstract {
 	id: number;
+	approved: boolean | null;
 	documentId: string;
 	name: string;
 	email: string;

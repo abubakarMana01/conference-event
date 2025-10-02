@@ -6,6 +6,7 @@ import { useNavigate } from '@/hooks/useNavigate';
 import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/constants/colors';
+import EventDetails from '@/screens/event/EventDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,11 @@ const AppStack = () => {
 			}}
 		>
 			<Stack.Screen name="Root" component={AppBottomTabs} />
+			<Stack.Screen
+				name={ROUTES.EVENT_DETAILS}
+				component={EventDetails}
+				options={{ headerShown: true }}
+			/>
 			<Stack.Screen name={ROUTES.SPEAKER_DETAILS} component={SpeakerDetails} />
 			<Stack.Screen name={ROUTES.NEWS_DETAILS} component={NewsDetail} />
 			<Stack.Screen
