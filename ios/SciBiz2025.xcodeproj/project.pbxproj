@@ -7,26 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04105BD7F06C1F8EBD0B99FF /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CDC07539F67E2493387592 /* ExpoModulesProvider.swift */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		3790DFCD607A5154EC143D6B /* libPods-SciBiz2025.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ED715AC198AD181C78BFA11 /* libPods-SciBiz2025.a */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		71AD765D4F1604CB5471FA6D /* libPods-SciBiz2025.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C3A0E2BF39A1F1F379E88FC9 /* libPods-SciBiz2025.a */; };
-		9714A56F3845ADEC890ADC38 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BDA25ED49FF6D37E1A6144CF /* PrivacyInfo.xcprivacy */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
-		DC99783C49CB64240398EA46 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C937F2221826AF4595C738 /* ExpoModulesProvider.swift */; };
+		EF6289639502683BEF1CAAD6 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D2020A5C29C900D1A541F45C /* PrivacyInfo.xcprivacy */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		00E1264A903458F5BB254006 /* Pods-SciBiz2025.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SciBiz2025.release.xcconfig"; path = "Target Support Files/Pods-SciBiz2025/Pods-SciBiz2025.release.xcconfig"; sourceTree = "<group>"; };
+		09CDC07539F67E2493387592 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-SciBiz2025/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* SciBiz2025.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SciBiz2025.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SciBiz2025/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SciBiz2025/Info.plist; sourceTree = "<group>"; };
-		51C937F2221826AF4595C738 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-SciBiz2025/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		643FF21524446F319A507899 /* Pods-SciBiz2025.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SciBiz2025.release.xcconfig"; path = "Target Support Files/Pods-SciBiz2025/Pods-SciBiz2025.release.xcconfig"; sourceTree = "<group>"; };
+		9ED715AC198AD181C78BFA11 /* libPods-SciBiz2025.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SciBiz2025.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = SciBiz2025/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		BDA25ED49FF6D37E1A6144CF /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = SciBiz2025/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		C3A0E2BF39A1F1F379E88FC9 /* libPods-SciBiz2025.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SciBiz2025.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E67A7E2E5EA3C567A4DE6B32 /* Pods-SciBiz2025.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SciBiz2025.debug.xcconfig"; path = "Target Support Files/Pods-SciBiz2025/Pods-SciBiz2025.debug.xcconfig"; sourceTree = "<group>"; };
+		C0C1B1F50A1E6FB024C8B63A /* Pods-SciBiz2025.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SciBiz2025.debug.xcconfig"; path = "Target Support Files/Pods-SciBiz2025/Pods-SciBiz2025.debug.xcconfig"; sourceTree = "<group>"; };
+		D2020A5C29C900D1A541F45C /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = SciBiz2025/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = SciBiz2025/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* SciBiz2025-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "SciBiz2025-Bridging-Header.h"; path = "SciBiz2025/SciBiz2025-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71AD765D4F1604CB5471FA6D /* libPods-SciBiz2025.a in Frameworks */,
+				3790DFCD607A5154EC143D6B /* libPods-SciBiz2025.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,7 +53,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				BDA25ED49FF6D37E1A6144CF /* PrivacyInfo.xcprivacy */,
+				D2020A5C29C900D1A541F45C /* PrivacyInfo.xcprivacy */,
 			);
 			name = SciBiz2025;
 			sourceTree = "<group>";
@@ -62,17 +62,9 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				C3A0E2BF39A1F1F379E88FC9 /* libPods-SciBiz2025.a */,
+				9ED715AC198AD181C78BFA11 /* libPods-SciBiz2025.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		7F87FFDDC220A07666B5FE8C /* ExpoModulesProviders */ = {
-			isa = PBXGroup;
-			children = (
-				8E4480C2638D272960A511D4 /* SciBiz2025 */,
-			);
-			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -89,8 +81,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				F0F26CBFE797FC60F94FD3C8 /* Pods */,
-				7F87FFDDC220A07666B5FE8C /* ExpoModulesProviders */,
+				94EAF75A7FB9A7E981D75251 /* Pods */,
+				EAE144680FA40D2D6B26E74F /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -105,12 +97,22 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8E4480C2638D272960A511D4 /* SciBiz2025 */ = {
+		90E1CA15619EF720E9B58DEC /* SciBiz2025 */ = {
 			isa = PBXGroup;
 			children = (
-				51C937F2221826AF4595C738 /* ExpoModulesProvider.swift */,
+				09CDC07539F67E2493387592 /* ExpoModulesProvider.swift */,
 			);
 			name = SciBiz2025;
+			sourceTree = "<group>";
+		};
+		94EAF75A7FB9A7E981D75251 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C0C1B1F50A1E6FB024C8B63A /* Pods-SciBiz2025.debug.xcconfig */,
+				643FF21524446F319A507899 /* Pods-SciBiz2025.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
@@ -122,14 +124,12 @@
 			path = SciBiz2025/Supporting;
 			sourceTree = "<group>";
 		};
-		F0F26CBFE797FC60F94FD3C8 /* Pods */ = {
+		EAE144680FA40D2D6B26E74F /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				E67A7E2E5EA3C567A4DE6B32 /* Pods-SciBiz2025.debug.xcconfig */,
-				00E1264A903458F5BB254006 /* Pods-SciBiz2025.release.xcconfig */,
+				90E1CA15619EF720E9B58DEC /* SciBiz2025 */,
 			);
-			name = Pods;
-			path = Pods;
+			name = ExpoModulesProviders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "SciBiz2025" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				A474BABE237B3158F862676C /* [Expo] Configure project */,
+				BFF503D82D2E48CC522BB9DA /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				8AB884CD8C9CD8097F0AD457 /* [CP] Embed Pods Frameworks */,
+				8532BABEB8DE30C6002D723B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,7 +196,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				9714A56F3845ADEC890ADC38 /* PrivacyInfo.xcprivacy in Resources */,
+				EF6289639502683BEF1CAAD6 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +280,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SciBiz2025/Pods-SciBiz2025-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8AB884CD8C9CD8097F0AD457 /* [CP] Embed Pods Frameworks */ = {
+		8532BABEB8DE30C6002D723B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -298,7 +298,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SciBiz2025/Pods-SciBiz2025-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A474BABE237B3158F862676C /* [Expo] Configure project */ = {
+		BFF503D82D2E48CC522BB9DA /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -325,7 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				DC99783C49CB64240398EA46 /* ExpoModulesProvider.swift in Sources */,
+				04105BD7F06C1F8EBD0B99FF /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,7 +334,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E67A7E2E5EA3C567A4DE6B32 /* Pods-SciBiz2025.debug.xcconfig */;
+			baseConfigurationReference = C0C1B1F50A1E6FB024C8B63A /* Pods-SciBiz2025.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -370,7 +370,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00E1264A903458F5BB254006 /* Pods-SciBiz2025.release.xcconfig */;
+			baseConfigurationReference = 643FF21524446F319A507899 /* Pods-SciBiz2025.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
