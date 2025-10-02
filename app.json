@@ -21,15 +21,15 @@
 		},
 		"android": {
 			"adaptiveIcon": {
-				"foregroundImage": "./assets/scibiz-logo.png",
+				"foregroundImage": "./assets/scibiz-logo-sm.png",
 				"backgroundColor": "#ffffff"
 			},
 			"edgeToEdgeEnabled": true,
 			"package": "com.abubakarmana01.cclconference",
-			"versionCode": 8
+			"versionCode": 10
 		},
 		"web": {
-			"favicon": "./assets/scibiz-logo.png"
+			"favicon": "./assets/scibiz-logo-sm.png"
 		},
 		"extra": {
 			"eas": {
