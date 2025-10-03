@@ -21,7 +21,7 @@
 		},
 		"android": {
 			"adaptiveIcon": {
-				"foregroundImage": "./assets/scibiz-logo-2xl.png",
+				"foregroundImage": "./assets/scibiz-logo-android.png",
 				"backgroundColor": "#ffffff"
 			},
 			"edgeToEdgeEnabled": true,
