@@ -15,6 +15,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import { useRoute } from '@/hooks/useNavigate';
+import Markdown from 'react-native-markdown-display';
 
 const SpeakerDetails = () => {
 	const navigation = useNavigation();
@@ -86,15 +87,24 @@ const SpeakerDetails = () => {
 					<Text style={styles.name}>
 						{speaker.title} {speaker.fullname}
 					</Text>
-					{/* <Text style={styles.position}>{speaker.position}</Text> */}
-					{/* <Text style={styles.institution}>{speaker.institution}</Text> */}
 
 					{/* Divider */}
 					<View style={styles.divider} />
 
 					{/* Bio Section */}
 					<Text style={styles.sectionTitle}>About</Text>
-					<Text style={styles.bio}>{speaker.profile}</Text>
+					<Markdown
+						style={{
+							body: {
+								fontSize: 16,
+								color: COLORS.grey,
+								lineHeight: 24,
+								textAlign: 'justify',
+							},
+						}}
+					>
+						{speaker.profile}
+					</Markdown>
 
 					{/* Social Links */}
 					<Text style={styles.sectionTitle}>Connect</Text>

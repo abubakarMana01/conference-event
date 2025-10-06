@@ -3,9 +3,9 @@ export const ROUTES = Object.freeze({
 	LOGIN: 'Login',
 
 	EVENT: 'Event',
-	EVENT_DETAILS: 'EventDetails',
+	EVENT_DETAILS: 'Event Details',
 	SPEAKERS: 'Speakers',
-	SPEAKER_DETAILS: 'SpeakerDetails',
+	SPEAKER_DETAILS: 'Speaker Details',
 	SPONSERS: 'Sponsors',
 	ANNOUNCEMENTS: 'Announcements',
 	NEWS_DETAILS: 'News Details',

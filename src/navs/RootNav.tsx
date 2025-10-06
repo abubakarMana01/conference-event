@@ -9,7 +9,6 @@ import { ActivityIndicator, View } from 'react-native';
 const RootNav = () => {
 	const { user } = useAuth();
 
-
 	return (
 		<NavigationContainer theme={navigationTheme}>
 			{user ? <AppStack /> : <AuthStack />}

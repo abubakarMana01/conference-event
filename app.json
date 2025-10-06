@@ -4,7 +4,7 @@
 		"slug": "ccl-conference",
 		"version": "1.0.2",
 		"orientation": "portrait",
-		"icon": "./assets/scibiz-logo-sm.png",
+		"icon": "./assets/scibiz-logo-android.png",
 		"userInterfaceStyle": "light",
 		"newArchEnabled": true,
 		"splash": {

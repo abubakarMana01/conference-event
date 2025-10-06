@@ -25,3 +25,12 @@ export const formatNumber = (numString: string) => {
 		maximumFractionDigits: 2,
 	});
 };
+
+export const truncateMarkdown = (markdown: string, maxChars = 100) => {
+	// Remove basic markdown symbols and truncate
+	const plain = markdown
+		.replace(/[#_*>\[\]\(\)`]/g, '')
+		.replace(/\n/g, ' ')
+		.trim();
+	return plain.length > maxChars ? plain.slice(0, maxChars) + '…' : plain;
+};

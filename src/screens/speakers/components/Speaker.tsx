@@ -14,6 +14,8 @@ import { ROUTES } from '@/navs/routes';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { ISpeaker } from '@/types';
+import Markdown from 'react-native-markdown-display';
+import { truncateMarkdown } from '@/utils';
 
 interface Props {
 	speaker: ISpeaker;
@@ -26,6 +28,8 @@ const Speaker = ({ speaker }: Props) => {
 
 	// Placeholder for topics - replace with actual data when available
 	const topics: any[] = [];
+
+	const truncatedProfile = truncateMarkdown(speaker.profile, 40);
 
 	const SPEAKER_TYPE_COLORS: Record<string, string> = {
 		'Keynote Speaker': '#FF5722',
@@ -136,9 +140,17 @@ const Speaker = ({ speaker }: Props) => {
 					</AppText>
 					{/* ) : null} */}
 
-					<AppText style={styles.position} numberOfLines={2}>
+					{/* <AppText style={styles.position} numberOfLines={2}>
 						{speaker.profile}
-					</AppText>
+					</AppText> */}
+
+					<Markdown
+						style={{
+							body: styles.profileText,
+						}}
+					>
+						{truncatedProfile}
+					</Markdown>
 
 					{topics.length > 0 && (
 						<View style={styles.topicsContainer}>
@@ -242,14 +254,11 @@ const styles = StyleSheet.create({
 		color: COLORS.primary,
 		textAlign: 'center',
 		fontWeight: '500',
-		marginBottom: 4,
 	},
-	position: {
+	profileText: {
 		textAlign: 'center',
 		color: COLORS.grey,
-		fontSize: 13,
-		lineHeight: 18,
-		marginBottom: 8,
+		fontSize: 12,
 	},
 	topicsContainer: {
 		flexDirection: 'row',

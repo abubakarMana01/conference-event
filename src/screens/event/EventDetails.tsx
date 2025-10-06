@@ -1,6 +1,6 @@
 import { COLORS } from '@/constants/colors';
 import { useNavigate } from '@/hooks/useNavigate';
-import { useRoute } from '@react-navigation/native';
+import { ParamListBase, RouteProp, useRoute } from '@react-navigation/native';
 import React from 'react';
 import {
 	View,
@@ -10,6 +10,7 @@ import {
 	SafeAreaView,
 	StatusBar,
 } from 'react-native';
+import Markdown from 'react-native-markdown-display';
 
 // Event interface
 interface Event {
@@ -17,10 +18,18 @@ interface Event {
 	detail: string;
 }
 
+type EventDetailsRouteParams = {
+	event: Event;
+};
+
 const EventDetailsScreen = () => {
-	const route = useRoute();
+	const route = useRoute<RouteProp<{ params: EventDetailsRouteParams }>>();
 	const event = route.params?.event;
-	const { goBack } = useNavigate();
+	const { goBack, setOptions } = useNavigate();
+
+	setOptions({
+		headerTitle: event?.title || 'Event Details',
+	});
 
 	if (!event?.detail) goBack();
 
@@ -33,13 +42,25 @@ const EventDetailsScreen = () => {
 				showsVerticalScrollIndicator={false}
 			>
 				{/* Header Section */}
-				<View style={styles.header}>
+				{/* <View style={styles.header}>
 					<Text style={styles.title}>{event.title}</Text>
-				</View>
+				</View> */}
 
 				{/* Details Section */}
 				<View style={styles.detailsSection}>
-					<Text style={styles.detailsText}>{event.detail}</Text>
+					<Markdown
+						style={{
+							body: {
+								fontSize: 16,
+								color: COLORS.grey,
+								lineHeight: 24,
+								textAlign: 'justify',
+							},
+						}}
+					>
+						{event.detail}
+					</Markdown>
+					{/* <Text style={styles.detailsText}>{event.detail}</Text> */}
 				</View>
 
 				{/* Additional information section (optional) */}
@@ -56,7 +77,6 @@ const EventDetailsScreen = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#f8f9fa',
 	},
 	scrollView: {
 		flex: 1,
@@ -68,18 +88,15 @@ const styles = StyleSheet.create({
 	header: {
 		paddingBottom: 20,
 	},
-	title: {
-		fontSize: 28,
-		fontWeight: 'bold',
-		color: COLORS.primary,
-	},
 	detailsLabel: {
 		fontSize: 18,
 		fontWeight: '600',
 		color: '#495057',
 		marginBottom: 15,
 	},
-	detailsSection: { marginBottom: 16 },
+	detailsSection: {
+		marginBottom: 16,
+	},
 	detailsText: {
 		fontSize: 16,
 		color: '#6c757d',
@@ -90,6 +107,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#e7f3ff',
 		borderRadius: 8,
 		padding: 15,
+		marginTop: 20,
 		borderLeftWidth: 4,
 		borderLeftColor: '#0d6efd',
 	},
