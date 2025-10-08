@@ -57,6 +57,9 @@ const Abstract = ({ abstract }: Props) => {
 						<Ionicons name="download" size={16} color={COLORS.white} />
 					</View>
 				</View>
+				<AppText style={styles.coAuthors}>
+					CoAuthors: {abstract.coAuthors.map((author) => author.name)}
+				</AppText>
 			</View>
 		</Pressable>
 	);
@@ -74,6 +77,9 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.1,
 		shadowRadius: 6,
 		elevation: 3,
+		borderWidth: 0.5,
+		borderColor: COLORS.greyLight,
+		marginBottom: 16,
 	},
 	abstractImage: {
 		width: '100%',
@@ -88,6 +94,7 @@ const styles = StyleSheet.create({
 	},
 	abstractContent: {
 		padding: 16,
+		paddingBottom: 6,
 	},
 	categoryTag: {
 		alignSelf: 'flex-start',
@@ -143,5 +150,12 @@ const styles = StyleSheet.create({
 		color: COLORS.white,
 		marginRight: 8,
 		fontWeight: '500',
+	},
+	coAuthors: {
+		marginTop: 8,
+		fontSize: 14,
+		color: COLORS.primary,
+		marginBottom: 12,
+		fontStyle: 'italic',
 	},
 });

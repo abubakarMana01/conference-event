@@ -52,15 +52,19 @@ const Abstracts = () => {
 
 	const allAbstracts = useMemo(() => {
 		const flat = data?.pages.flatMap((page) => page.data) || [];
-		return flat.filter((abstract) => {
+		return flat?.filter((abstract) => {
 			const matchesSearch =
 				abstract.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
 				abstract.name?.toLowerCase().includes(searchQuery.toLowerCase());
 			const matchesCategory =
 				selectedCategory === 'All' || abstract.category === selectedCategory;
-			return matchesSearch && matchesCategory;
+			return matchesSearch && matchesCategory && abstract.approved;
 		});
 	}, [data, searchQuery, selectedCategory]);
+
+	const filteredAbstracts = allAbstracts.filter(
+		(abstract) => !!abstract.approved
+	);
 
 	if (isLoading) {
 		return (
@@ -122,14 +126,14 @@ const Abstracts = () => {
 				</ScrollView>
 
 				<FlatList
-					data={allAbstracts.filter((abstract) => !!abstract.approved)}
+					data={filteredAbstracts}
 					renderItem={({ item }) => <Abstract abstract={item} />}
 					keyExtractor={(item) => String(item.id)}
 					scrollEnabled={false}
 					contentContainerStyle={styles.listContent}
 					ItemSeparatorComponent={() => <View style={styles.separator} />}
 					onEndReached={() => hasNextPage && fetchNextPage()}
-					onEndReachedThreshold={0.8}
+					onEndReachedThreshold={1}
 					ListFooterComponent={
 						isFetchingNextPage ? (
 							<ActivityIndicator

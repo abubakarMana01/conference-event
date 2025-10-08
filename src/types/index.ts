@@ -87,7 +87,15 @@ export interface IAbstract {
 		updatedAt: string;
 		publishedAt: string;
 	};
-	coAuthors: [];
+	coAuthors: {
+		affiliation: null;
+		email: null;
+		geoZone: null;
+		id: number;
+		name: string;
+		phone: null;
+		state: null;
+	}[];
 }
 
 export interface IAnnouncement {
