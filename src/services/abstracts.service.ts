@@ -5,7 +5,7 @@ export const fetchAbstracts = async ({
 	pageParam = 1,
 }): Promise<PaginatedResponse<IAbstract[]>> => {
 	const res = await api.get(
-		`/abstracts?populate=*&pagination[page]=${pageParam}&pagination[pageSize]=10`
+		`/abstracts?populate=*&pagination[page]=${pageParam}&pagination[pageSize]=10&filters[approved][$eq]=true`
 	);
 	return res.data;
 };
