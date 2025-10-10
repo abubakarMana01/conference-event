@@ -14,8 +14,8 @@ const AppBottomTabBarIcons = ({ focused, color, size }: Props) => {
 
 	let iconName: keyof typeof Ionicons.glyphMap = 'add'; // Default icon
 
-	if (route.name === ROUTES.EVENT) {
-		iconName = focused ? 'calendar' : 'calendar-outline';
+	if (route.name === ROUTES.HOME) {
+		iconName = focused ? 'home' : 'home-outline';
 	} else if (route.name === ROUTES.SPEAKERS) {
 		iconName = focused ? 'people-circle' : 'people-circle-outline';
 	} else if (route.name === ROUTES.SPONSERS) {

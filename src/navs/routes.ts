@@ -2,7 +2,7 @@ export const ROUTES = Object.freeze({
 	// Auth
 	LOGIN: 'Login',
 
-	EVENT: 'Event',
+	HOME: 'Home',
 	EVENT_DETAILS: 'Event Details',
 	SPEAKERS: 'Speakers',
 	SPEAKER_DETAILS: 'Speaker Details',

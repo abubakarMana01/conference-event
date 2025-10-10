@@ -45,9 +45,9 @@ const Sponsor = ({ sponsor }: Props) => {
 				)}
 			</View>
 			<AppText style={styles.sponsorName}>{sponsor.name}</AppText>
-			<AppText numberOfLines={3} style={styles.sponsorDescription}>
+			{/* <AppText numberOfLines={3} style={styles.sponsorDescription}>
 				{sponsor.description}
-			</AppText>
+			</AppText> */}
 			<View style={styles.linkContainer}>
 				<AppText style={styles.linkText}>Visit Website</AppText>
 				<Ionicons name="open-outline" size={16} color={COLORS.primary} />
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
 	linkContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		marginTop: 'auto',
+		marginTop: 8,
 	},
 	linkText: {
 		fontSize: 14,

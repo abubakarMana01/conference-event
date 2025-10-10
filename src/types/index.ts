@@ -67,6 +67,7 @@ export interface IAbstract {
 	id: number;
 	approved: boolean | null;
 	documentId: string;
+	abstract_id: string;
 	name: string;
 	email: string;
 	phone: string;

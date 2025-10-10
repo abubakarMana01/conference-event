@@ -100,7 +100,7 @@ const SponsorsScreen = () => {
 				}}
 				scrollEventThrottle={400}
 			>
-				<View style={styles.searchContainer}>
+				{/* <View style={styles.searchContainer}>
 					<SearchBar
 						{...{
 							searchQuery,
@@ -108,7 +108,7 @@ const SponsorsScreen = () => {
 							placeholder: 'Search Sponsors...',
 						}}
 					/>
-				</View>
+				</View> */}
 
 				{filteredSponsorTiers.length > 0 ? (
 					filteredSponsorTiers.map((tier) => (

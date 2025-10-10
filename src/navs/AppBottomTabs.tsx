@@ -23,24 +23,14 @@ const AppBottomTabs = () => {
 				headerRight: HeaderRight,
 			}}
 		>
+			{/* Home */}
 			<Tab.Screen
-				name={ROUTES.EVENT}
+				name={ROUTES.HOME}
 				component={Event}
 				options={{
 					headerTitle: '',
 					headerLeft: EventHeaderLeft,
 				}}
-			/>
-			<Tab.Screen name={ROUTES.SPEAKERS} component={Speakers} />
-			<Tab.Screen
-				name={ROUTES.SPONSERS}
-				component={Sponsors}
-				options={{ headerTitle: 'Our Sponsors' }}
-			/>
-			<Tab.Screen
-				name={ROUTES.ABSTRACTS}
-				component={Abstracts}
-				options={{ title: 'Abstracts' }}
 			/>
 			<Tab.Screen
 				name={ROUTES.ANNOUNCEMENTS}
@@ -51,6 +41,17 @@ const AppBottomTabs = () => {
 					tabBarBadge: 1,
 					tabBarBadgeStyle: styles.tabBarBadgeStyle,
 				}}
+			/>
+			<Tab.Screen name={ROUTES.SPEAKERS} component={Speakers} />
+			<Tab.Screen
+				name={ROUTES.ABSTRACTS}
+				component={Abstracts}
+				options={{ title: 'Abstracts' }}
+			/>
+			<Tab.Screen
+				name={ROUTES.SPONSERS}
+				component={Sponsors}
+				options={{ headerTitle: 'Our Sponsors' }}
 			/>
 		</Tab.Navigator>
 	);
@@ -76,7 +77,7 @@ const HeaderRight = () => {
 					color={COLORS.white}
 				/>
 				<AppText style={styles.checkInText}>
-					{user?.checkedIn ? 'Checked In' : 'Check In Available'}
+					{user?.checkedIn ? 'Checked In' : 'Not Checked In'}
 				</AppText>
 			</View>
 			<Pressable onPress={() => navigation.navigate(ROUTES.SETTINGS)}>
@@ -105,9 +106,9 @@ const EventHeaderLeft = () => {
 				<AppText style={styles.userName}>
 					{user?.username.split(' ')[0]}
 				</AppText>
-				<View style={styles.badge}>
+				{/* <View style={styles.badge}>
 					<AppText style={styles.badgeText}>{user?.userType}</AppText>
-				</View>
+				</View> */}
 			</View>
 		</View>
 	);
@@ -123,14 +124,14 @@ const styles = StyleSheet.create({
 		padding: 2,
 	},
 	userName: { fontSize: 16, fontWeight: '600' },
-	badge: {
-		backgroundColor: 'rgba(74, 144, 226, 0.1)',
-		borderRadius: 4,
-		paddingHorizontal: 6,
-		marginTop: 2,
-		paddingVertical: 2,
-		alignSelf: 'flex-start',
-	},
+	// badge: {
+	// 	backgroundColor: 'rgba(74, 144, 226, 0.1)',
+	// 	borderRadius: 4,
+	// 	paddingHorizontal: 6,
+	// 	marginTop: 2,
+	// 	paddingVertical: 2,
+	// 	alignSelf: 'flex-start',
+	// },
 	badgeText: {
 		fontSize: 10,
 		color: COLORS.primary,

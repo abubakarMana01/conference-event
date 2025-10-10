@@ -1,6 +1,6 @@
 import { COLORS } from '@/constants/colors';
 import { useNavigate } from '@/hooks/useNavigate';
-import { ParamListBase, RouteProp, useRoute } from '@react-navigation/native';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import React from 'react';
 import {
 	View,
@@ -27,6 +27,8 @@ const EventDetailsScreen = () => {
 	const event = route.params?.event;
 	const { goBack, setOptions } = useNavigate();
 
+	console.log('Event Details Route Params:', event.detail);
+
 	setOptions({
 		headerTitle: event?.title || 'Event Details',
 	});
@@ -48,7 +50,7 @@ const EventDetailsScreen = () => {
 
 				{/* Details Section */}
 				<View style={styles.detailsSection}>
-					<Markdown
+					{/* <Markdown
 						style={{
 							body: {
 								fontSize: 16,
@@ -59,8 +61,24 @@ const EventDetailsScreen = () => {
 						}}
 					>
 						{event.detail}
+					</Markdown> */}
+					<Markdown
+						style={{
+							body: {
+								fontSize: 16,
+								color: COLORS.grey,
+								lineHeight: 24,
+							},
+							bullet_list_icon: {
+								fontWeight: 'bold',
+								fontSize: 36,
+								top: 6,
+								color: COLORS.primary, // You can change color to make the bullet stand out
+							},
+						}}
+					>
+						{event.detail}
 					</Markdown>
-					{/* <Text style={styles.detailsText}>{event.detail}</Text> */}
 				</View>
 
 				{/* Additional information section (optional) */}

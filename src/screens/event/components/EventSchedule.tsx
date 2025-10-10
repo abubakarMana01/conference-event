@@ -109,18 +109,18 @@ const IDaySchedule = ({ dayData }: { dayData: any }) => {
 								<AppText style={styles.agendaTitle}>{item.title}</AppText>
 								<AppText style={styles.agendaTime}>{item.time}</AppText>
 							</View>
-							{item.detail && (
+							{/* {item.detail && (
 								<View style={styles.locationTag}>
-									{/* <Ionicons
+									 <Ionicons
 										name="information-circle"
 										size={14}
 										color={COLORS.primary}
-									/> */}
+									/> 
 									<AppText style={styles.locationText} numberOfLines={2}>
 										{item.detail.replace(/# /g, '')}
 									</AppText>
 								</View>
-							)}
+							)} */}
 							{item.detail && (
 								<TouchableOpacity
 									style={{ marginTop: 8, marginLeft: 'auto' }}
@@ -133,12 +133,13 @@ const IDaySchedule = ({ dayData }: { dayData: any }) => {
 									<AppText
 										style={{
 											fontSize: 12,
-											opacity: 0.5,
+											opacity: 0.8,
 											textDecorationLine: 'underline',
 											fontStyle: 'italic',
+											color: COLORS.primary,
 										}}
 									>
-										See more
+										Open to see details
 									</AppText>
 								</TouchableOpacity>
 							)}

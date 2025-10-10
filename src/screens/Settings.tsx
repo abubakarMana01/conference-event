@@ -35,24 +35,24 @@ const Settings = () => {
 	const navigation = useNavigate();
 
 	const settingsOptions: SettingsSection[] = [
-		{
-			title: 'Account',
-			icon: 'person-outline',
-			options: [
-				{
-					title: 'Edit Profile',
-					icon: 'create-outline',
-					action: () => navigation.navigate(ROUTES.COMING_SOON),
-					disabled: true,
-				},
-				{
-					title: 'Change Password',
-					icon: 'lock-closed-outline',
-					action: () => navigation.navigate(ROUTES.COMING_SOON),
-					disabled: true,
-				},
-			],
-		},
+		// {
+		// 	title: 'Account',
+		// 	icon: 'person-outline',
+		// 	options: [
+		// 		{
+		// 			title: 'Edit Profile',
+		// 			icon: 'create-outline',
+		// 			action: () => navigation.navigate(ROUTES.COMING_SOON),
+		// 			disabled: true,
+		// 		},
+		// 		{
+		// 			title: 'Change Password',
+		// 			icon: 'lock-closed-outline',
+		// 			action: () => navigation.navigate(ROUTES.COMING_SOON),
+		// 			disabled: true,
+		// 		},
+		// 	],
+		// },
 		{
 			title: 'Preferences',
 			icon: 'settings-outline',

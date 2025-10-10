@@ -23,10 +23,7 @@ const Abstract = ({ abstract }: Props) => {
 	};
 
 	return (
-		<Pressable
-			style={styles.abstractCard}
-			onPress={() => handleOpenPdf(abstract.abstract?.url)}
-		>
+		<View style={styles.abstractCard}>
 			<Image
 				source={require('@/assets/theme-poster.png')}
 				style={styles.abstractImage}
@@ -36,32 +33,49 @@ const Abstract = ({ abstract }: Props) => {
 				style={styles.imageGradient}
 			/>
 			<View style={styles.abstractContent}>
-				<View style={styles.categoryTag}>
-					<AppText style={styles.categoryText}>
-						{abstract.category || 'Uncategorized'}
+				<View
+					style={{
+						flexDirection: 'row',
+						alignItems: 'center',
+						justifyContent: 'space-between',
+						marginBottom: 12,
+					}}
+				>
+					<View style={styles.categoryTag}>
+						<AppText style={styles.categoryText}>
+							{abstract.category || 'Uncategorized'}
+						</AppText>
+					</View>
+
+					<AppText
+						style={{ fontSize: 14, fontWeight: 'semibold', color: COLORS.grey }}
+						numberOfLines={3}
+					>
+						{abstract.abstract_id}
 					</AppText>
 				</View>
-				<AppText style={styles.abstractTitle} numberOfLines={2}>
+
+				<AppText style={styles.abstractTitle} numberOfLines={3}>
 					{abstract.title}
 				</AppText>
-				<AppText style={styles.abstractAuthors}>{abstract.name}</AppText>
-				<AppText style={styles.abstractSummary}>
-					Document: {abstract.abstract?.name || 'N/A'}
+
+				<AppText style={styles.coAuthors}>
+					Authors: {abstract.coAuthors.map((author) => author.name).join(', ')}
 				</AppText>
+
 				<View style={styles.abstractFooter}>
-					<AppText style={styles.abstractDate}>
-						{new Date(abstract.createdAt).toDateString()}
-					</AppText>
-					<View style={styles.downloadButton}>
+					{/* <AppText style={styles.abstractAuthors}>{abstract.name}</AppText> */}
+
+					<Pressable
+						style={styles.downloadButton}
+						onPress={() => handleOpenPdf(abstract.abstract?.url)}
+					>
 						<AppText style={styles.downloadText}>View PDF</AppText>
 						<Ionicons name="download" size={16} color={COLORS.white} />
-					</View>
+					</Pressable>
 				</View>
-				<AppText style={styles.coAuthors}>
-					CoAuthors: {abstract.coAuthors.map((author) => author.name)}
-				</AppText>
 			</View>
-		</Pressable>
+		</View>
 	);
 };
 
@@ -102,7 +116,6 @@ const styles = StyleSheet.create({
 		borderRadius: 4,
 		paddingHorizontal: 8,
 		paddingVertical: 4,
-		marginBottom: 12,
 	},
 	categoryText: {
 		fontSize: 12,
@@ -119,7 +132,7 @@ const styles = StyleSheet.create({
 	abstractAuthors: {
 		fontSize: 14,
 		color: COLORS.primary,
-		marginBottom: 12,
+		// marginBottom: 12,
 		fontStyle: 'italic',
 	},
 	abstractSummary: {
@@ -132,6 +145,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+		marginVertical: 6,
 	},
 	abstractDate: {
 		fontSize: 12,
@@ -154,8 +168,7 @@ const styles = StyleSheet.create({
 	coAuthors: {
 		marginTop: 8,
 		fontSize: 14,
-		color: COLORS.primary,
+		color: COLORS.grey,
 		marginBottom: 12,
-		fontStyle: 'italic',
 	},
 });

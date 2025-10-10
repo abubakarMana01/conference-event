@@ -99,7 +99,6 @@ const SpeakerDetails = () => {
 								fontSize: 16,
 								color: COLORS.grey,
 								lineHeight: 24,
-								textAlign: 'justify',
 							},
 						}}
 					>
@@ -109,13 +108,13 @@ const SpeakerDetails = () => {
 					{/* Social Links */}
 					<Text style={styles.sectionTitle}>Connect</Text>
 					<View style={styles.socialContainer}>
-						<TouchableOpacity
+						{/* <TouchableOpacity
 							style={styles.socialButton}
 							onPress={() => handleSocialPress('twitter')}
 						>
 							<Ionicons name="logo-twitter" size={24} color="#1DA1F2" />
 							<Text style={styles.socialText}>Twitter</Text>
-						</TouchableOpacity>
+						</TouchableOpacity> */}
 
 						<TouchableOpacity
 							style={styles.socialButton}
@@ -125,13 +124,13 @@ const SpeakerDetails = () => {
 							<Text style={styles.socialText}>LinkedIn</Text>
 						</TouchableOpacity>
 
-						<TouchableOpacity
+						{/* <TouchableOpacity
 							style={styles.socialButton}
 							onPress={() => handleSocialPress('website')}
 						>
 							<Ionicons name="globe-outline" size={24} color={COLORS.primary} />
 							<Text style={styles.socialText}>Website</Text>
-						</TouchableOpacity>
+						</TouchableOpacity> */}
 					</View>
 				</View>
 			</ScrollView>
@@ -176,15 +175,8 @@ const styles = StyleSheet.create({
 		borderColor: COLORS.white,
 	},
 	infoContainer: {
-		backgroundColor: COLORS.white,
 		borderRadius: 20,
-		padding: 25,
 		marginHorizontal: 20,
-		shadowColor: COLORS.black,
-		shadowOffset: { width: 0, height: 4 },
-		shadowOpacity: 0.1,
-		shadowRadius: 10,
-		elevation: 5,
 		marginTop: 50,
 	},
 	name: {
@@ -217,6 +209,7 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		color: COLORS.dark,
 		marginBottom: 15,
+		marginTop: 20,
 	},
 	bio: {
 		fontSize: 16,

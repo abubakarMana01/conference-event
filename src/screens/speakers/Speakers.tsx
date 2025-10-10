@@ -75,13 +75,13 @@ const Speakers = () => {
 				renderItem={({ item }) => <Speaker speaker={item} />}
 				keyExtractor={(item) => item.documentId}
 				ListFooterComponent={<View style={styles.footer} />}
-				ListHeaderComponent={
-					<SearchBar
-						searchQuery={searchQuery}
-						setSearchQuery={setSearchQuery}
-						placeholder="Search speakers, organizations, topics..."
-					/>
-				}
+				// ListHeaderComponent={
+				// 	<SearchBar
+				// 		searchQuery={searchQuery}
+				// 		setSearchQuery={setSearchQuery}
+				// 		placeholder="Search speakers, organizations, topics..."
+				// 	/>
+				// }
 				ListHeaderComponentStyle={{ marginBottom: 16 }}
 				ListEmptyComponent={
 					<View style={styles.emptyState}>

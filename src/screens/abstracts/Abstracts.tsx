@@ -94,7 +94,7 @@ const Abstracts = () => {
 						{...{
 							searchQuery,
 							setSearchQuery,
-							placeholder: 'Search Abstracts...',
+							placeholder: 'Search Abstracts by title, author...',
 						}}
 					/>
 				</View>
