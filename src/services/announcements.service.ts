@@ -5,7 +5,7 @@ export const fetchAnnouncements = async ({
 	pageParam = 1,
 }): Promise<PaginatedResponse<IAnnouncement[]>> => {
 	const res = await api.get(
-		`/announcements?pagination[page]=${pageParam}&pagination[pageSize]=10`
+		`/announcements?pagination[page]=${pageParam}&pagination[pageSize]=10&sort[0]=order:asc`
 	);
 	return res.data;
 };
