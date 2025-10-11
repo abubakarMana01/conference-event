@@ -5,7 +5,7 @@ export const fetchSessions = async ({
 	pageParam = 1,
 }): Promise<PaginatedResponse<ISession[]>> => {
 	const response = await api.get(
-		'/sessions?pagination[page]=${pageParam}&pagination[pageSize]=10'
+		`/sessions?pagination[page]=${pageParam}&pagination[pageSize]=10`
 	);
 	return response.data;
 };
