@@ -4,7 +4,6 @@ import AuthStack from './AuthStack';
 import AppStack from './AppStack';
 import { COLORS } from '@/constants/colors';
 import { useAuth } from '@/contexts/AuthContext';
-import { ActivityIndicator, View } from 'react-native';
 
 const RootNav = () => {
 	const { user } = useAuth();

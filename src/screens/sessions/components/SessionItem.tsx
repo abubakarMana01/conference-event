@@ -26,7 +26,10 @@ interface Props {
 
 const SessionItem = ({ session }: Props) => {
 	return (
-		<View style={styles.container}>
+		<Pressable
+			style={styles.container}
+			onPress={() => Linking.openURL(session.link)}
+		>
 			<View style={styles.liveSessionHeader}>
 				<View style={styles.liveIndicator}>
 					<View style={[styles.livePulse, getPulseStyle(session.state)]} />
@@ -51,7 +54,7 @@ const SessionItem = ({ session }: Props) => {
 				{format(new Date(session.time), 'p')} -{' '}
 				{format(new Date(session.endtime), 'p')}
 			</AppText>
-		</View>
+		</Pressable>
 
 		// <Pressable
 		// 	style={styles.liveSessionCard}

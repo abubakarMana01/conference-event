@@ -1,4 +1,4 @@
-import { StyleSheet, View } from 'react-native';
+import { Linking, Pressable, StyleSheet, View } from 'react-native';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { AppText } from '@/components';
@@ -25,7 +25,10 @@ interface Props {
 
 const LiveSession = ({ session }: Props) => {
 	return (
-		<View style={styles.container}>
+		<Pressable
+			style={styles.container}
+			onPress={() => Linking.openURL(session.link)}
+		>
 			<View style={styles.liveSessionHeader}>
 				<View style={styles.liveIndicator}>
 					<View style={[styles.livePulse, getPulseStyle(session.state)]} />
@@ -50,7 +53,7 @@ const LiveSession = ({ session }: Props) => {
 				{format(new Date(session.time), 'p')} -{' '}
 				{format(new Date(session.endtime), 'p')}
 			</AppText>
-		</View>
+		</Pressable>
 	);
 };
 
@@ -76,7 +79,7 @@ const styles = StyleSheet.create({
 		borderColor: COLORS.greyLightPlus,
 	},
 	sessionTitle: {
-		color: COLORS.primary,
+		// color: COLORS.primary,
 		fontSize: 16,
 		fontWeight: '600',
 	},
