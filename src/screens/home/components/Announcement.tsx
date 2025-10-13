@@ -8,6 +8,7 @@ import { formatDistanceToNow } from 'date-fns';
 
 interface Props {
 	announcement: IAnnouncement;
+	isLastItem?: boolean;
 }
 
 const DELIVERY_OPTION_STYLES: Record<
@@ -19,9 +20,16 @@ const DELIVERY_OPTION_STYLES: Record<
 	standard: { backgroundColor: '#a0a4a6', textColor: '#fff' },
 };
 
-const Announcement = ({ announcement }: Props) => {
+const Announcement = ({ announcement, isLastItem }: Props) => {
 	return (
-		<View style={styles.container}>
+		<View
+			style={[
+				styles.container,
+				{
+					borderBottomWidth: isLastItem ? 0 : 0.5,
+				},
+			]}
+		>
 			{/* <LinearGradient
 				colors={['rgb(233, 195, 247)', 'rgba(233, 195, 247, 0.185)']}
 				style={styles.gradientContainer}
@@ -69,10 +77,8 @@ export default Announcement;
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#ebe2f9',
-		borderRadius: 16,
-		overflow: 'hidden',
-		justifyContent: 'space-between',
+		paddingVertical: 12,
+		borderColor: '#c49ce4',
 	},
 	gradientContainer: {
 		position: 'absolute',
@@ -81,10 +87,7 @@ const styles = StyleSheet.create({
 		right: 0,
 		height: '100%',
 	},
-	content: {
-		paddingHorizontal: 12,
-		paddingVertical: 12,
-	},
+	content: {},
 	header: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
@@ -108,7 +111,6 @@ const styles = StyleSheet.create({
 	summary: {
 		fontSize: 14,
 		color: COLORS.black,
-		marginBottom: 12,
 		lineHeight: 20,
 	},
 });
