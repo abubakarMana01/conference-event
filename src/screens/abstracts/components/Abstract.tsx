@@ -59,7 +59,7 @@ const Abstract = ({ abstract }: Props) => {
 					{abstract.title}
 				</AppText>
 
-				<AppText style={styles.coAuthors}>
+				<AppText style={styles.authors}>
 					Authors: {abstract.coAuthors.map((author) => author.name).join(', ')}
 				</AppText>
 
@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
 		marginRight: 8,
 		fontWeight: '500',
 	},
-	coAuthors: {
+	authors: {
 		marginTop: 8,
 		fontSize: 14,
 		color: COLORS.grey,

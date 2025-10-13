@@ -14,5 +14,5 @@ export const fetchSessionsForHome = async () => {
 	const response = await api.get<Promise<PaginatedResponse<ISession[]>>>(
 		'/sessions?filters[$or][state][$eq]=live&filters[$or][state][$eq]=upcoming&sort[0]=state:asc&pagination[page]=1&pagination[pageSize]=1'
 	);
-	return (await response.data).data;
+	return response.data;
 };

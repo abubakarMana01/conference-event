@@ -50,10 +50,6 @@ const EventSchedule = () => {
 
 	return (
 		<View style={styles.scheduleContainer}>
-			{/* <View style={styles.sectionHeader}>
-				<AppText style={styles.sectionTitle}>Event Schedule</AppText>
-			</View> */}
-
 			<TabView
 				navigationState={{ index, routes }}
 				renderScene={renderScene}
@@ -98,11 +94,11 @@ const IDaySchedule = ({ dayData }: { dayData: any }) => {
 									{ bottom: i !== dayData.agenda.length - 1 ? 0 : 20 },
 								]}
 							/>
-							{i === dayData.agenda.length - 1 && (
+							{/* {i === dayData.agenda.length - 1 && (
 								<View
 									style={[styles.timeDot, { position: 'absolute', bottom: 0 }]}
 								/>
-							)}
+							)} */}
 						</View>
 						<View style={styles.agendaContent}>
 							<View style={styles.agendaTop}>
@@ -156,6 +152,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		borderRadius: 16,
 		margin: 16,
+		marginTop: 0,
 		shadowColor: COLORS.dark,
 		shadowOffset: { width: 0, height: 0 },
 		shadowOpacity: Platform.select({
@@ -169,7 +166,7 @@ const styles = StyleSheet.create({
 		elevation: 0,
 		borderWidth: 1,
 		borderColor: COLORS.greyLight,
-		minHeight: 300,
+		minHeight: 350,
 		overflow: 'hidden',
 	},
 	sectionHeader: {

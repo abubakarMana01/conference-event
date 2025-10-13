@@ -1,7 +1,7 @@
 // Auth
 export { default as Login } from './auth/Login';
 
-export { default as Event } from './event/Event';
+export { default as Home } from './home/Home';
 export { default as Speakers } from './speakers/Speakers';
 export { default as SpeakerDetails } from './speakers/SpeakerDetails';
 export { default as Sponsors } from './sponsors/Sponsors';

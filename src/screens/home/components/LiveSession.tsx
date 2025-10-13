@@ -1,18 +1,11 @@
-import {
-	Linking,
-	Pressable,
-	StyleSheet,
-	View,
-	ActivityIndicator,
-} from 'react-native';
+import { Linking, Pressable, StyleSheet, View } from 'react-native';
 import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { AppText } from '@/components';
 import { COLORS } from '@/constants/colors';
-import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
-import { fetchSessions } from '@/services/sessions.service';
+import { ISession } from '@/types';
 
 const getPulseStyle = (state: string) => {
 	switch (state) {
@@ -27,34 +20,13 @@ const getPulseStyle = (state: string) => {
 	}
 };
 
-const LiveSession = () => {
-	const { data, isLoading, isError } = useQuery({
-		queryKey: ['sessions'],
-		queryFn: fetchSessions,
-	});
+interface Props {
+	session: ISession;
+}
 
-	if (isError || !data) return null;
-
-	const liveSession = data.find(
-		(session: any) =>
-			session.state === 'live' ||
-			session.state === 'upcoming' ||
-			session.state === 'concluded'
-	);
-
-	if (!liveSession) return null;
-
+const LiveSession = ({ session }: Props) => {
 	return (
-		<Pressable
-			style={styles.liveSessionCard}
-			onPress={() => Linking.openURL(liveSession.link)}
-		>
-			{isLoading && (
-				<View style={styles.loading}>
-					<ActivityIndicator size="large" color={COLORS.primary} />
-				</View>
-			)}
-
+		<View style={styles.liveSessionCard}>
 			<LinearGradient
 				colors={['rgba(0,0,0,0.3)', 'transparent']}
 				style={styles.liveSessionGradient}
@@ -62,39 +34,42 @@ const LiveSession = () => {
 
 			<View style={styles.liveSessionHeader}>
 				<View style={styles.liveIndicator}>
-					<View style={[styles.livePulse, getPulseStyle(liveSession.state)]} />
+					<View style={[styles.livePulse, getPulseStyle(session.state)]} />
 					<AppText style={styles.liveText}>
-						{liveSession.state === 'live'
+						{session.state === 'live'
 							? 'LIVE NOW'
-							: liveSession.state === 'upcoming'
+							: session.state === 'upcoming'
 							? 'UPCOMING'
 							: 'CONCLUDED'}
 					</AppText>
 				</View>
 				<Ionicons
-					name={liveSession.link.includes('zoom') ? 'videocam' : 'logo-youtube'}
+					name={session.link.includes('zoom') ? 'videocam' : 'logo-youtube'}
 					size={20}
 					color={COLORS.white}
 				/>
 			</View>
 
 			<View style={styles.sessionContent}>
-				<AppText style={styles.sessionTitle}>{liveSession.title}</AppText>
-				<AppText style={styles.sessionSpeaker}>{liveSession.anchors}</AppText>
+				<AppText style={styles.sessionTitle}>{session.title}</AppText>
+				<AppText style={styles.sessionSpeaker}>{session.anchors}</AppText>
 				<AppText style={styles.sessionTime}>
-					{format(new Date(liveSession.time), 'p')} -{' '}
-					{format(new Date(liveSession.endtime), 'p')}
+					{format(new Date(session.time), 'p')} -{' '}
+					{format(new Date(session.endtime), 'p')}
 				</AppText>
 				<AppText style={styles.sessionDescription}>
 					Join this session to engage with insightful discussions.
 				</AppText>
 			</View>
 
-			<View style={styles.joinButton}>
+			<Pressable
+				style={styles.joinButton}
+				onPress={() => Linking.openURL(session.link)}
+			>
 				<AppText style={styles.joinText}>Join Now</AppText>
 				<Ionicons name="arrow-forward" size={16} color={COLORS.white} />
-			</View>
-		</Pressable>
+			</Pressable>
+		</View>
 	);
 };
 
@@ -108,7 +83,7 @@ const styles = StyleSheet.create({
 		overflow: 'hidden',
 		minHeight: 180,
 		justifyContent: 'space-between',
-		marginTop: 20,
+		marginBottom: 16,
 	},
 	liveSessionGradient: {
 		position: 'absolute',
@@ -184,10 +159,5 @@ const styles = StyleSheet.create({
 		fontWeight: '600',
 		fontSize: 16,
 		marginRight: 8,
-	},
-	loading: {
-		paddingVertical: 32,
-		justifyContent: 'center',
-		alignItems: 'center',
 	},
 });

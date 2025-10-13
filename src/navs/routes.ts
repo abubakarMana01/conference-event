@@ -4,6 +4,7 @@ export const ROUTES = Object.freeze({
 
 	HOME: 'Home',
 	EVENT_DETAILS: 'Event Details',
+	SESSIONS: 'Sessions',
 	SPEAKERS: 'Speakers',
 	SPEAKER_DETAILS: 'Speaker Details',
 	SPONSERS: 'Sponsors',

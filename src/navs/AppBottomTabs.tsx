@@ -3,10 +3,11 @@ import { ROUTES } from './routes';
 import { Image, Pressable, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { AppBottomTabBarIcons, AppText } from '@/components';
-import { Abstracts, Event, Announcements, Speakers, Sponsors } from '@/screens';
+import { Abstracts, Home, Speakers, Sponsors } from '@/screens';
 import { useNavigate } from '@/hooks/useNavigate';
 import { COLORS } from '@/constants/colors';
 import { useAuth } from '@/contexts/AuthContext';
+import Sessions from '@/screens/sessions/Sessions';
 
 const Tab = createBottomTabNavigator();
 
@@ -26,22 +27,13 @@ const AppBottomTabs = () => {
 			{/* Home */}
 			<Tab.Screen
 				name={ROUTES.HOME}
-				component={Event}
+				component={Home}
 				options={{
 					headerTitle: '',
-					headerLeft: EventHeaderLeft,
+					headerLeft: HomeHeaderLeft,
 				}}
 			/>
-			<Tab.Screen
-				name={ROUTES.ANNOUNCEMENTS}
-				component={Announcements}
-				options={{
-					headerTitle: 'Announcements',
-					title: 'Updates',
-					tabBarBadge: 1,
-					tabBarBadgeStyle: styles.tabBarBadgeStyle,
-				}}
-			/>
+			<Tab.Screen name={ROUTES.SESSIONS} component={Sessions} />
 			<Tab.Screen name={ROUTES.SPEAKERS} component={Speakers} />
 			<Tab.Screen
 				name={ROUTES.ABSTRACTS}
@@ -87,7 +79,7 @@ const HeaderRight = () => {
 	);
 };
 
-const EventHeaderLeft = () => {
+const HomeHeaderLeft = () => {
 	const { user } = useAuth();
 	return (
 		<View

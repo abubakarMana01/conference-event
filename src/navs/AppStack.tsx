@@ -6,7 +6,7 @@ import { useNavigate } from '@/hooks/useNavigate';
 import { Platform, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '@/constants/colors';
-import EventDetails from '@/screens/event/EventDetails';
+import EventDetails from '@/screens/home/EventDetails';
 
 const Stack = createNativeStackNavigator();
 
