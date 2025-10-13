@@ -54,6 +54,18 @@ const Settings = () => {
 		// 	],
 		// },
 		{
+			title: 'Certificate',
+			icon: 'gift-outline',
+			options: [
+				{
+					title: 'Get Certificate',
+					icon: 'gift-outline',
+					action: () => {},
+					disabled: true,
+				},
+			],
+		},
+		{
 			title: 'Preferences',
 			icon: 'settings-outline',
 			options: [

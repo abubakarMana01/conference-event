@@ -23,7 +23,7 @@ const Announcement = ({ announcement }: Props) => {
 	return (
 		<View style={styles.container}>
 			{/* <LinearGradient
-				colors={['rgba(0,0,0,0.3)', 'transparent']}
+				colors={['rgb(233, 195, 247)', 'rgba(233, 195, 247, 0.185)']}
 				style={styles.gradientContainer}
 			/> */}
 
@@ -69,14 +69,10 @@ export default Announcement;
 
 const styles = StyleSheet.create({
 	container: {
-		// backgroundColor: COLORS.primary,
+		backgroundColor: '#ebe2f9',
 		borderRadius: 16,
 		overflow: 'hidden',
 		justifyContent: 'space-between',
-		borderLeftWidth: 6,
-		borderLeftColor: COLORS.primary,
-		borderWidth: 0.5,
-		borderColor: COLORS.greyLight,
 	},
 	gradientContainer: {
 		position: 'absolute',
@@ -107,17 +103,11 @@ const styles = StyleSheet.create({
 	},
 	date: {
 		fontSize: 12,
-		color: COLORS.primary,
-	},
-	title: {
-		fontSize: 18,
-		fontWeight: '600',
-		color: COLORS.dark,
-		marginBottom: 8,
+		color: COLORS.black,
 	},
 	summary: {
 		fontSize: 14,
-		color: COLORS.primary,
+		color: COLORS.black,
 		marginBottom: 12,
 		lineHeight: 20,
 	},
