@@ -22,10 +22,10 @@ const DELIVERY_OPTION_STYLES: Record<
 const Announcement = ({ announcement }: Props) => {
 	return (
 		<View style={styles.container}>
-			<LinearGradient
+			{/* <LinearGradient
 				colors={['rgba(0,0,0,0.3)', 'transparent']}
 				style={styles.gradientContainer}
-			/>
+			/> */}
 
 			<View style={styles.content}>
 				<View style={styles.header}>
@@ -69,10 +69,14 @@ export default Announcement;
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: COLORS.primary,
+		// backgroundColor: COLORS.primary,
 		borderRadius: 16,
 		overflow: 'hidden',
 		justifyContent: 'space-between',
+		borderLeftWidth: 6,
+		borderLeftColor: COLORS.primary,
+		borderWidth: 0.5,
+		borderColor: COLORS.greyLight,
 	},
 	gradientContainer: {
 		position: 'absolute',
@@ -103,7 +107,7 @@ const styles = StyleSheet.create({
 	},
 	date: {
 		fontSize: 12,
-		color: COLORS.white,
+		color: COLORS.primary,
 	},
 	title: {
 		fontSize: 18,
@@ -113,7 +117,7 @@ const styles = StyleSheet.create({
 	},
 	summary: {
 		fontSize: 14,
-		color: COLORS.white,
+		color: COLORS.primary,
 		marginBottom: 12,
 		lineHeight: 20,
 	},
