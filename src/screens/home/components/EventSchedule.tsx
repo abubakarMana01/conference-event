@@ -76,36 +76,37 @@ const IDaySchedule = ({ dayData }: { dayData: any }) => {
 	const navigation = useNavigate();
 
 	return (
-		<ScrollView>
-			<View style={styles.dayContainer}>
-				{dayData.agenda.map((item: any, i: number) => (
-					<Pressable
-						key={item.id}
-						style={[
-							styles.agendaItem,
-							i === dayData.agenda.length - 1 && { borderBottomWidth: 0 },
-						]}
-					>
-						<View style={styles.timeContainer}>
-							<View style={styles.timeDot} />
-							<View
-								style={[
-									styles.timeLine,
-									{ bottom: i !== dayData.agenda.length - 1 ? 0 : 20 },
-								]}
-							/>
-							{/* {i === dayData.agenda.length - 1 && (
+		<View style={{ flex: 1 }}>
+			<ScrollView>
+				<View style={styles.dayContainer}>
+					{dayData.agenda.map((item: any, i: number) => (
+						<Pressable
+							key={item.id}
+							style={[
+								styles.agendaItem,
+								i === dayData.agenda.length - 1 && { borderBottomWidth: 0 },
+							]}
+						>
+							<View style={styles.timeContainer}>
+								<View style={styles.timeDot} />
+								<View
+									style={[
+										styles.timeLine,
+										{ bottom: i !== dayData.agenda.length - 1 ? 0 : 20 },
+									]}
+								/>
+								{/* {i === dayData.agenda.length - 1 && (
 								<View
 									style={[styles.timeDot, { position: 'absolute', bottom: 0 }]}
 								/>
 							)} */}
-						</View>
-						<View style={styles.agendaContent}>
-							<View style={styles.agendaTop}>
-								<AppText style={styles.agendaTitle}>{item.title}</AppText>
-								<AppText style={styles.agendaTime}>{item.time}</AppText>
 							</View>
-							{/* {item.detail && (
+							<View style={styles.agendaContent}>
+								<View style={styles.agendaTop}>
+									<AppText style={styles.agendaTitle}>{item.title}</AppText>
+									<AppText style={styles.agendaTime}>{item.time}</AppText>
+								</View>
+								{/* {item.detail && (
 								<View style={styles.locationTag}>
 									 <Ionicons
 										name="information-circle"
@@ -117,33 +118,34 @@ const IDaySchedule = ({ dayData }: { dayData: any }) => {
 									</AppText>
 								</View>
 							)} */}
-							{item.detail && (
-								<TouchableOpacity
-									style={{ marginTop: 8, marginLeft: 'auto' }}
-									onPress={() =>
-										navigation.navigate(ROUTES.EVENT_DETAILS, {
-											event: item,
-										})
-									}
-								>
-									<AppText
-										style={{
-											fontSize: 12,
-											opacity: 0.8,
-											textDecorationLine: 'underline',
-											fontStyle: 'italic',
-											color: COLORS.primary,
-										}}
+								{item.detail && (
+									<TouchableOpacity
+										style={{ marginTop: 8, marginLeft: 'auto' }}
+										onPress={() =>
+											navigation.navigate(ROUTES.EVENT_DETAILS, {
+												event: item,
+											})
+										}
 									>
-										Open to see details
-									</AppText>
-								</TouchableOpacity>
-							)}
-						</View>
-					</Pressable>
-				))}
-			</View>
-		</ScrollView>
+										<AppText
+											style={{
+												fontSize: 12,
+												opacity: 0.8,
+												textDecorationLine: 'underline',
+												fontStyle: 'italic',
+												color: COLORS.primary,
+											}}
+										>
+											Open to see details
+										</AppText>
+									</TouchableOpacity>
+								)}
+							</View>
+						</Pressable>
+					))}
+				</View>
+			</ScrollView>
+		</View>
 	);
 };
 

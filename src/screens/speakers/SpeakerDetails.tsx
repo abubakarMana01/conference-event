@@ -22,19 +22,7 @@ const SpeakerDetails = () => {
 	const route = useRoute();
 	const speaker = route.params?.speaker;
 
-	const handleSocialPress = (type: 'twitter' | 'linkedin' | 'website') => {
-		let url = '';
-		switch (type) {
-			case 'twitter':
-				url = `https://twitter.com/${speaker?.social?.twitter}`;
-				break;
-			case 'linkedin':
-				url = `https://linkedin.com/${speaker?.social?.linkedin}`;
-				break;
-			case 'website':
-				url = `http://${speaker?.social?.website}`;
-				break;
-		}
+	const handleSocialPress = (url: string) => {
 		Linking.openURL(url).catch((err) =>
 			console.error("Couldn't load page", err)
 		);
@@ -108,29 +96,13 @@ const SpeakerDetails = () => {
 					{/* Social Links */}
 					<Text style={styles.sectionTitle}>Connect</Text>
 					<View style={styles.socialContainer}>
-						{/* <TouchableOpacity
-							style={styles.socialButton}
-							onPress={() => handleSocialPress('twitter')}
-						>
-							<Ionicons name="logo-twitter" size={24} color="#1DA1F2" />
-							<Text style={styles.socialText}>Twitter</Text>
-						</TouchableOpacity> */}
-
 						<TouchableOpacity
 							style={styles.socialButton}
-							onPress={() => handleSocialPress('linkedin')}
+							onPress={() => handleSocialPress(speaker.linkedin_url)}
 						>
 							<Ionicons name="logo-linkedin" size={24} color="#0077B5" />
 							<Text style={styles.socialText}>LinkedIn</Text>
 						</TouchableOpacity>
-
-						{/* <TouchableOpacity
-							style={styles.socialButton}
-							onPress={() => handleSocialPress('website')}
-						>
-							<Ionicons name="globe-outline" size={24} color={COLORS.primary} />
-							<Text style={styles.socialText}>Website</Text>
-						</TouchableOpacity> */}
 					</View>
 				</View>
 			</ScrollView>
@@ -219,8 +191,6 @@ const styles = StyleSheet.create({
 	},
 	socialContainer: {
 		flexDirection: 'row',
-		justifyContent: 'space-around',
-		marginTop: 10,
 	},
 	socialButton: {
 		alignItems: 'center',

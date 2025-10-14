@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
 	},
 	date: {
 		fontSize: 12,
-		color: COLORS.black,
+		color: COLORS.grey,
 	},
 	summary: {
 		fontSize: 14,
