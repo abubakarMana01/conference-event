@@ -1,4 +1,4 @@
-import { Linking, Pressable, StyleSheet, View } from 'react-native';
+import { Linking, Platform, Pressable, StyleSheet, View } from 'react-native';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { AppText } from '@/components';
@@ -61,7 +61,10 @@ export default LiveSession;
 
 const styles = StyleSheet.create({
 	container: {
-		shadowColor: '#000',
+		shadowColor: Platform.select({
+			ios: COLORS.black,
+			android: COLORS.greyDark,
+		}),
 		shadowOffset: {
 			width: 0,
 			height: 2,

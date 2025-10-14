@@ -1,6 +1,7 @@
 import {
 	ActivityIndicator,
 	FlatList,
+	Platform,
 	ScrollView,
 	StyleSheet,
 	Text,
@@ -38,20 +39,19 @@ const Sessions = () => {
 	}
 
 	return (
-		<Screen>
-			<FlatList
-				keyExtractor={(item) => item.id.toString()}
-				data={data?.data}
-				renderItem={({ item }) => <SessionItem session={item} />}
-				ListEmptyComponent={() => (
-					<View style={styles.emptyState}>
-						<Ionicons name="radio" size={48} color={COLORS.greyLight} />
-						<AppText style={styles.emptyText}>No session found</AppText>
-					</View>
-				)}
-				ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
-			/>
-		</Screen>
+		<FlatList
+			contentContainerStyle={{ padding: 16 }}
+			keyExtractor={(item) => item.id.toString()}
+			data={data?.data}
+			renderItem={({ item }) => <SessionItem session={item} />}
+			ListEmptyComponent={() => (
+				<View style={styles.emptyState}>
+					<Ionicons name="radio" size={48} color={COLORS.greyLight} />
+					<AppText style={styles.emptyText}>No session found</AppText>
+				</View>
+			)}
+			ItemSeparatorComponent={() => <View style={{ height: 16 }} />}
+		/>
 	);
 };
 

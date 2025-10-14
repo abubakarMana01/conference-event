@@ -76,76 +76,58 @@ const IDaySchedule = ({ dayData }: { dayData: any }) => {
 	const navigation = useNavigate();
 
 	return (
-		<View style={{ flex: 1 }}>
-			<ScrollView>
-				<View style={styles.dayContainer}>
-					{dayData.agenda.map((item: any, i: number) => (
-						<Pressable
-							key={item.id}
-							style={[
-								styles.agendaItem,
-								i === dayData.agenda.length - 1 && { borderBottomWidth: 0 },
-							]}
-						>
-							<View style={styles.timeContainer}>
-								<View style={styles.timeDot} />
-								<View
-									style={[
-										styles.timeLine,
-										{ bottom: i !== dayData.agenda.length - 1 ? 0 : 20 },
-									]}
-								/>
-								{/* {i === dayData.agenda.length - 1 && (
-								<View
-									style={[styles.timeDot, { position: 'absolute', bottom: 0 }]}
-								/>
-							)} */}
+		<ScrollView nestedScrollEnabled={true}>
+			<View style={styles.dayContainer}>
+				{dayData.agenda.map((item: any, i: number) => (
+					<Pressable
+						key={item.id}
+						style={[
+							styles.agendaItem,
+							i === dayData.agenda.length - 1 && { borderBottomWidth: 0 },
+						]}
+					>
+						<View style={styles.timeContainer}>
+							<View style={styles.timeDot} />
+							<View
+								style={[
+									styles.timeLine,
+									{ bottom: i !== dayData.agenda.length - 1 ? 0 : 20 },
+								]}
+							/>
+						</View>
+						<View style={styles.agendaContent}>
+							<View style={styles.agendaTop}>
+								<AppText style={styles.agendaTitle}>{item.title}</AppText>
+								<AppText style={styles.agendaTime}>{item.time}</AppText>
 							</View>
-							<View style={styles.agendaContent}>
-								<View style={styles.agendaTop}>
-									<AppText style={styles.agendaTitle}>{item.title}</AppText>
-									<AppText style={styles.agendaTime}>{item.time}</AppText>
-								</View>
-								{/* {item.detail && (
-								<View style={styles.locationTag}>
-									 <Ionicons
-										name="information-circle"
-										size={14}
-										color={COLORS.primary}
-									/> 
-									<AppText style={styles.locationText} numberOfLines={2}>
-										{item.detail.replace(/# /g, '')}
-									</AppText>
-								</View>
-							)} */}
-								{item.detail && (
-									<TouchableOpacity
-										style={{ marginTop: 8, marginLeft: 'auto' }}
-										onPress={() =>
-											navigation.navigate(ROUTES.EVENT_DETAILS, {
-												event: item,
-											})
-										}
+
+							{item.detail && (
+								<TouchableOpacity
+									style={{ marginTop: 8, marginLeft: 'auto' }}
+									onPress={() =>
+										navigation.navigate(ROUTES.EVENT_DETAILS, {
+											event: item,
+										})
+									}
+								>
+									<AppText
+										style={{
+											fontSize: 12,
+											opacity: 0.8,
+											textDecorationLine: 'underline',
+											fontStyle: 'italic',
+											color: COLORS.primary,
+										}}
 									>
-										<AppText
-											style={{
-												fontSize: 12,
-												opacity: 0.8,
-												textDecorationLine: 'underline',
-												fontStyle: 'italic',
-												color: COLORS.primary,
-											}}
-										>
-											Open to see details
-										</AppText>
-									</TouchableOpacity>
-								)}
-							</View>
-						</Pressable>
-					))}
-				</View>
-			</ScrollView>
-		</View>
+										Open to see details
+									</AppText>
+								</TouchableOpacity>
+							)}
+						</View>
+					</Pressable>
+				))}
+			</View>
+		</ScrollView>
 	);
 };
 

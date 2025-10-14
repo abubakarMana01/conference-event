@@ -1,4 +1,4 @@
-import { Linking, Pressable, StyleSheet, View } from 'react-native';
+import { Linking, Platform, Pressable, StyleSheet, View } from 'react-native';
 import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
@@ -107,7 +107,10 @@ export default SessionItem;
 
 const styles = StyleSheet.create({
 	container: {
-		shadowColor: '#000',
+		shadowColor: Platform.select({
+			ios: COLORS.black,
+			android: COLORS.greyDark,
+		}),
 		shadowOffset: {
 			width: 0,
 			height: 2,
@@ -117,7 +120,6 @@ const styles = StyleSheet.create({
 		elevation: 2,
 		backgroundColor: COLORS.white,
 		borderRadius: 16,
-		marginHorizontal: 16,
 		marginBottom: 16,
 		paddingVertical: 16,
 		paddingHorizontal: 16,

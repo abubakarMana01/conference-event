@@ -51,6 +51,8 @@ const SponsorsScreen = () => {
 		return groups;
 	}, [sponsors]);
 
+	const tierOrder = ['diamond', 'platinum', 'gold', 'silver', 'bronze'];
+
 	const filteredSponsorTiers = Object.entries(groupedSponsors)
 		.map(([level, sponsors]) => ({
 			title: `${level[0].toUpperCase()}${level.slice(1)} Sponsors`,
@@ -61,17 +63,8 @@ const SponsorsScreen = () => {
 					s.description.toLowerCase().includes(searchQuery.toLowerCase())
 			),
 		}))
-		.filter((tier) => tier.sponsors.length > 0);
-
-	if (isLoading) {
-		return (
-			<ActivityIndicator
-				size="large"
-				color={COLORS.primary}
-				style={{ marginTop: 40 }}
-			/>
-		);
-	}
+		.filter((tier) => tier.sponsors.length > 0)
+		.sort((a, b) => tierOrder.indexOf(a.level) - tierOrder.indexOf(b.level));
 
 	return (
 		<View style={styles.container}>

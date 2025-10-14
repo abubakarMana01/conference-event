@@ -9,6 +9,7 @@ import {
 	ScrollView,
 	SafeAreaView,
 	StatusBar,
+	Platform,
 } from 'react-native';
 import Markdown from 'react-native-markdown-display';
 
@@ -26,8 +27,6 @@ const EventDetailsScreen = () => {
 	const route = useRoute<RouteProp<{ params: EventDetailsRouteParams }>>();
 	const event = route.params?.event;
 	const { goBack, setOptions } = useNavigate();
-
-	console.log('Event Details Route Params:', event.detail);
 
 	setOptions({
 		headerTitle: event?.title || 'Event Details',
@@ -72,7 +71,7 @@ const EventDetailsScreen = () => {
 							bullet_list_icon: {
 								fontWeight: 'bold',
 								fontSize: 36,
-								top: 6,
+								top: Platform.select({ ios: 6, android: 0 }),
 								color: COLORS.primary, // You can change color to make the bullet stand out
 							},
 						}}

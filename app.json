@@ -2,7 +2,7 @@
 	"expo": {
 		"name": "SciBiz 2025",
 		"slug": "ccl-conference",
-		"version": "1.0.6",
+		"version": "1.0.7",
 		"orientation": "portrait",
 		"icon": "./assets/scibiz-logo-android.png",
 		"userInterfaceStyle": "light",

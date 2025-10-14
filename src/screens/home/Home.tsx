@@ -1,4 +1,4 @@
-import { StyleSheet, ScrollView, View } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import React from 'react';
 import EventSchedule from './components/EventSchedule';
 import LiveSession from './components/LiveSession';
@@ -9,14 +9,13 @@ import Announcements from './components/Announcements';
 const EventHome = () => {
 	const { data } = useQuery({
 		queryKey: ['sessionsForHome'],
-		// queryFn: () => fetchSessions({ pageParam: 1 }),
 		queryFn: fetchSessionsForHome,
 	});
 
 	return (
 		<ScrollView contentContainerStyle={styles.scrollView}>
 			<Announcements />
-			{data && <LiveSession session={data?.data[0]} />}
+			{!!data?.data.length && <LiveSession session={data?.data[0]} />}
 			<EventSchedule />
 		</ScrollView>
 	);
